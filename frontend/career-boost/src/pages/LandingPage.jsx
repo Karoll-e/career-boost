@@ -5,6 +5,7 @@ import React from "react";
 // import { HERO_IMG } from "../assets/hero.jpg";
 // import { APP_FEATURE } from "../utils/data";
 import Navbar from "../components/Navbar";
+import Hero from "../components/Hero";
 
 const LandingPage = () => {
   // const navigate = useNavigate();
@@ -16,7 +17,8 @@ const LandingPage = () => {
 
   return (
     <div className="">
-      <Navbar></Navbar>
+      <Navbar />
+      <Hero />
     </div>
   );
 };
