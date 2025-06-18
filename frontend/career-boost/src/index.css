@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --font-display: "Geist", sans-serif;
+  --font-display: "DM sans", sans-serif;
   --breakpoint-3xl: 1920px;
   --color-primary: #ff9324;
 }
