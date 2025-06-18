@@ -8,7 +8,7 @@ import InterviewPrep from "./pages/InterviewPrep/InterviewPrep";
 
 const App = () => {
   return (
-    <div className="bg-amber-500">
+    <div className="">
       <Router>
         {/* Default Route */}
         <Routes>
