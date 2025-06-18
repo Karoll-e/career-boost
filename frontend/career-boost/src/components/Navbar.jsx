@@ -5,7 +5,7 @@ import { SunIcon } from "lucide-react";
 
 const Navbar = () => {
   return (
-    <div className="min-h-screen bg-muted">
+  
       <nav className="fixed top-6 inset-x-4 h-16 bg-background border dark:border-slate-700/70 max-w-screen-sm mx-auto rounded-xl">
         <div className="h-full flex items-center justify-between mx-auto px-4">
           <div className="flex items-center gap-2 md:gap-6 cursor-pointer">
@@ -26,7 +26,6 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
-    </div>
   );
 };
 
