@@ -1,0 +1,70 @@
+export default function LogoIcon({ 
+    width = 158, 
+    height = 159, 
+    className = "", 
+    arrowColor = "white",
+    backgroundColor = "black" 
+  }) {
+    return (
+      <svg 
+        width={width} 
+        height={height} 
+        viewBox="0 0 158 159" 
+        fill="none" 
+        xmlns="http://www.w3.org/2000/svg"
+        className={className}
+      >
+        <defs>
+          <filter 
+            id="filter0_d_202_2" 
+            x="0" 
+            y="0.5" 
+            width="158" 
+            height="158" 
+            filterUnits="userSpaceOnUse" 
+            colorInterpolationFilters="sRGB"
+          >
+            <feFlood floodOpacity="0" result="BackgroundImageFix"/>
+            <feColorMatrix 
+              in="SourceAlpha" 
+              type="matrix" 
+              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" 
+              result="hardAlpha"
+            />
+            <feOffset dy="4"/>
+            <feGaussianBlur stdDeviation="2"/>
+            <feComposite in2="hardAlpha" operator="out"/>
+            <feColorMatrix 
+              type="matrix" 
+              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
+            />
+            <feBlend 
+              mode="normal" 
+              in2="BackgroundImageFix" 
+              result="effect1_dropShadow_202_2"
+            />
+            <feBlend 
+              mode="normal" 
+              in="SourceGraphic" 
+              in2="effect1_dropShadow_202_2" 
+              result="shape"
+            />
+          </filter>
+        </defs>
+        <g filter="url(#filter0_d_202_2)">
+          <rect 
+            x="4" 
+            y="0.5" 
+            width="150" 
+            height="150" 
+            rx="20" 
+            fill={backgroundColor}
+          />
+          <path 
+            d="M124.988 70.3697C127.887 73.2687 127.887 77.9689 124.988 80.8679V80.8679C122.09 83.7669 117.389 83.7669 114.49 80.8679L100.574 66.952C95.5348 61.9123 86.9176 65.4817 86.9176 72.6089V110.19C86.9176 114.29 83.5938 117.614 79.4937 117.614V117.614C75.3939 117.614 72.0704 114.29 72.0704 110.19L72.07 70.8602C72.0699 63.733 63.4528 60.1637 58.4131 65.2034L42.7483 80.8682C39.8491 83.7674 35.1486 83.7674 32.2494 80.8682V80.8682C29.3503 77.969 29.3503 73.2685 32.2494 70.3693L72.9619 29.6568C76.0861 26.5326 81.1515 26.5326 84.2756 29.6568L124.988 70.3697Z" 
+            fill={arrowColor}
+          />
+        </g>
+      </svg>
+    );
+  }
