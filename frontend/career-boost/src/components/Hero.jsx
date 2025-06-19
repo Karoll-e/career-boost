@@ -18,13 +18,13 @@ const Hero = () => {
         Create stunning resumes with our intuitive builder and ace your interviews with AI-powered preparation. Join thousands of professionals who've already boosted their careers.
         </p>
         <div className="mt-6 flex items-center justify-center gap-4">
-          <Button size="lg" className="rounded-full text-base">
+          <Button size="lg" className="text-base">
             Get Started <ArrowUpRight className="!h-5 !w-5" />
           </Button>
           <Button
             variant="outline"
             size="lg"
-            className="rounded-full text-base shadow-none"
+            className=" text-base shadow-none"
           >
             <CirclePlay className="!h-5 !w-5" /> Watch Demo
           </Button>
@@ -32,6 +32,7 @@ const Hero = () => {
       </div>
       <div className="w-full max-w-screen-xl mx-auto aspect-video bg-accent rounded-xl" />
     </div>
+    
   );
 };
 
