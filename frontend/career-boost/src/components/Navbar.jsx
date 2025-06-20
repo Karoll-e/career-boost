@@ -5,27 +5,34 @@ import Modal from "./Modal";
 import Login from "../pages/Auth/Login";
 import SignUp from "../pages/Auth/SignUp";
 import LogoIcon from "../assets/logo";
+import { useBodyScrollLock } from "../hooks/useBodyScrollLock";
 
 const Navbar = () => {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [modalType, setModalType] = useState("login"); // "login" or "signup"
+  const [authModal, setAuthModal] = useState({
+    isOpen: false,
+    type: null,
+  });
 
-  const openModal = (type) => {
-    setModalType(type);
-    setModalOpen(true);
-  };
+  useBodyScrollLock(authModal.isOpen);
+  // const [modalOpen, setModalOpen] = useState(false);
+  // const [modalType, setModalType] = useState("login"); // "login" or "signup"
 
-  const closeModal = () => {
-    setModalOpen(false);
-  };
+  // const openModal = (type) => {
+  //   setModalType(type);
+  //   setModalOpen(true);
+  // };
 
-  const switchToLogin = () => {
-    setModalType("login");
-  };
+  // const closeModal = () => {
+  //   setModalOpen(false);
+  // };
 
-  const switchToSignup = () => {
-    setModalType("signup");
-  };
+  // const switchToLogin = () => {
+  //   setModalType("login");
+  // };
+
+  // const switchToSignup = () => {
+  //   setModalType("signup");
+  // };
 
   return (
     <nav className="fixed top-6 inset-x-4 h-16 bg-background border dark:border-slate-700/70 max-w-screen-sm mx-auto rounded-xl">
@@ -42,19 +49,39 @@ const Navbar = () => {
           <Button
             variant="outline"
             className=""
-            onClick={() => openModal("login")}
+            onClick={() => setAuthModal({ isOpen: true, type: "login" })}
           >
             Sign In
           </Button>
-          <Button onClick={() => openModal("signup")}>Get Started</Button>
+          <Button
+            onClick={() => setAuthModal({ isOpen: true, type: "signup" })}
+          >
+            Get Started
+          </Button>
         </div>
       </div>
 
-      <Modal open={modalOpen} onClose={closeModal}>
-        {modalType === "login" ? (
-          <Login onSwitchToSignup={switchToSignup} onClose={closeModal} />
-        ) : (
-          <SignUp onSwitchToLogin={switchToLogin} onClose={closeModal} />
+      <Modal
+        isOpen={authModal.isOpen}
+        onClose={() => setAuthModal({ isOpen: false, type: null })}
+        hideHeader
+      >
+        {authModal.type === "login" && (
+          <Login
+            onClose={() => setAuthModal({ isOpen: false, type: null })}
+            onSwitchToSignup={() =>
+              setAuthModal({ isOpen: true, type: "signup" })
+            }
+          />
+        )}
+
+        {authModal.type === "signup" && (
+          <SignUp
+            onClose={() => setAuthModal({ isOpen: false, type: null })}
+            onSwitchToLogin={() =>
+              setAuthModal({ isOpen: true, type: "login" })
+            }
+          />
         )}
       </Modal>
     </nav>

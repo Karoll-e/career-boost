@@ -1,26 +1,34 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
+// import { useNavigate } from "react-router-dom";
+import Input from "@/components/Inputs/Input";
 
-const Login = ({ onSwitchToSignup, onClose }) => {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+const Login = ({ onSwitchToSignup }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
+  // const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  // Handle Login Form Submit
+  const handleLogin = async (e) => {
     e.preventDefault();
-    // Handle login logic here
-    console.log("Login data:", formData);
-    // Close modal after successful login
-    onClose();
   };
+
+  // const handleChange = (e) => {
+  //   setFormData({
+  //     ...formData,
+  //     [e.target.name]: e.target.value,
+  //   });
+  // };
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   // Handle login logic here
+  //   console.log("Login data:", formData);
+  //   // Close modal after successful login
+  //   onClose();
+  // };
 
   return (
     <div className="w-full max-w-md mx-auto">
@@ -29,7 +37,41 @@ const Login = ({ onSwitchToSignup, onClose }) => {
         <p className="text-gray-600 mt-2">Sign in to your account</p>
       </div>
 
-      <div className="space-y-4">
+      <form onSubmit={handleLogin}>
+        <Input
+          value={email}
+          onChange={({ target }) => setEmail(target.value)}
+          label="Email Address"
+          placeholder="Enter your email"
+          type="email"
+        />
+
+        <Input
+          value={password}
+          onChange={({ target }) => setPassword(target.value)}
+          label="Password"
+          placeholder="Enter your password"
+          type="password"
+        />
+
+        {error && <p className="text-red-500 text-xs pb-2.5">{error}</p>}
+
+        <Button type="submit" className="w-full" onClick>
+          Sign In
+        </Button>
+
+        <p className="text-[13px] text-slate-800 mt-3">
+          Don't have an account?{" "}
+          <span
+            className="font-medium text-primary underline cursor-pointer"
+            onClick={onSwitchToSignup}
+          >
+            Sign up
+          </span>
+        </p>
+      </form>
+
+      {/* <div className="space-y-4">
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
             Email address
@@ -41,7 +83,7 @@ const Login = ({ onSwitchToSignup, onClose }) => {
             required
             value={formData.email}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-gray-300"
             placeholder="Enter your email"
           />
         </div>
@@ -57,7 +99,7 @@ const Login = ({ onSwitchToSignup, onClose }) => {
             required
             value={formData.password}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-gray-300"
             placeholder="Enter your password"
           />
         </div>
@@ -98,7 +140,7 @@ const Login = ({ onSwitchToSignup, onClose }) => {
             Sign up
           </button>
         </p>
-      </div>
+      </div> */}
     </div>
   );
 };
