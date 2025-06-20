@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 // import { useNavigate } from "react-router-dom";
 import Input from "@/components/Inputs/Input";
+import { validateEmail } from "../../utils/helper";
 
 const Login = ({ onSwitchToSignup }) => {
   const [email, setEmail] = useState("");
@@ -13,6 +14,28 @@ const Login = ({ onSwitchToSignup }) => {
   // Handle Login Form Submit
   const handleLogin = async (e) => {
     e.preventDefault();
+
+    if (!validateEmail(email)) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+
+    if (!password) {
+      setError("Please enter the password");
+      return;
+    }
+
+    setError("");
+
+    //Login API Call
+    try {
+    } catch (error) {
+      if (error.response && error.response.data.message) {
+        setError(error.response.data.message);
+      } else {
+        setError("Something went wrong. Please try again.");
+      }
+    }
   };
 
   // const handleChange = (e) => {
@@ -56,7 +79,7 @@ const Login = ({ onSwitchToSignup }) => {
 
         {error && <p className="text-red-500 text-xs pb-2.5">{error}</p>}
 
-        <Button type="submit" className="w-full" onClick>
+        <Button type="submit" className="w-full">
           Sign In
         </Button>
 
