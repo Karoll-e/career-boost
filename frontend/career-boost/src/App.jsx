@@ -8,7 +8,7 @@ import InterviewPrep from "./pages/InterviewPrep/InterviewPrep";
 
 const App = () => {
   return (
-    <div className="">
+    <div className="h-screen overflow-y-auto ">
       <Router>
         {/* Default Route */}
         <Routes>
