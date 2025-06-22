@@ -4,6 +4,8 @@ const cors = require("cors");
 const path = require("path");
 const connectDB = require("./config/db");
 
+const authRoutes = require('./routes/authRoutes')
+
 const app = express();
 
 // Middleware to handle CORS
@@ -15,10 +17,12 @@ app.use(
   })
 );
 
-connectDB()
-
-// Middleware
+// IMPORTANT: JSON parsing middleware MUST come before routes
 app.use(express.json());
+app.use(express.urlencoded({ extended: true })); // Add this for form data
+
+// Connect to database (can be before or after middleware)
+connectDB()
 
 // Routes
 app.use("/api/auth", authRoutes);
