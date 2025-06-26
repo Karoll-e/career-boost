@@ -1,38 +1,34 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sun } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import Modal from "./Modal";
 import Login from "../pages/Auth/Login";
 import SignUp from "../pages/Auth/SignUp";
 import LogoIcon from "../assets/logo";
 import { useBodyScrollLock } from "../hooks/useBodyScrollLock";
+import { useContext } from "react";
+import { UserContext } from "../context/userContext";
+import ProfileInfoCard from "./Cards/ProfileInfoCard";
 
 const Navbar = () => {
+  const { user } = useContext(UserContext);
+  const navigate = useNavigate();
+
   const [authModal, setAuthModal] = useState({
     isOpen: false,
     type: null,
   });
 
+  const handleCTA = () => {
+    if (!user) {
+      setAuthModal({ isOpen: true, type: "login" });
+    } else {
+      navigate("/dashboard");
+    }
+  };
+
   useBodyScrollLock(authModal.isOpen);
-  // const [modalOpen, setModalOpen] = useState(false);
-  // const [modalType, setModalType] = useState("login"); // "login" or "signup"
-
-  // const openModal = (type) => {
-  //   setModalType(type);
-  //   setModalOpen(true);
-  // };
-
-  // const closeModal = () => {
-  //   setModalOpen(false);
-  // };
-
-  // const switchToLogin = () => {
-  //   setModalType("login");
-  // };
-
-  // const switchToSignup = () => {
-  //   setModalType("signup");
-  // };
 
   return (
     <nav className="fixed top-6 inset-x-4 h-16 bg-background border dark:border-slate-700/70 max-w-screen-sm mx-auto rounded-xl">
@@ -46,18 +42,25 @@ const Navbar = () => {
           <Button size="icon" variant="outline">
             <Sun />
           </Button>
-          <Button
-            variant="outline"
-            className=""
-            onClick={() => setAuthModal({ isOpen: true, type: "login" })}
-          >
-            Sign In
-          </Button>
-          <Button
-            onClick={() => setAuthModal({ isOpen: true, type: "signup" })}
-          >
-            Get Started
-          </Button>
+          
+          {user ? (
+            <ProfileInfoCard/>
+          ) : (
+            <>
+              <Button
+                variant="outline"
+                className=""
+                onClick={() => setAuthModal({ isOpen: true, type: "login" })}
+              >
+                Sign In
+              </Button>
+              <Button
+                onClick={() => setAuthModal({ isOpen: true, type: "signup" })}
+              >
+                Get Started
+              </Button>
+            </>
+          )}
         </div>
       </div>
 
