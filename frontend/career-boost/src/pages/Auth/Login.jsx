@@ -1,57 +1,131 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { Button } from "@/components/ui/button";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { Eye, EyeOff, Loader2 } from "lucide-react";
 import Input from "@/components/Inputs/Input";
 import { validateEmail } from "../../utils/helper";
+import { useUser } from "../../context/userContext"; // Import the context
 
 const Login = ({ onSwitchToSignup }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
   const [error, setError] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
+  const [fieldErrors, setFieldErrors] = useState({});
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
+  
+  // Use the UserContext
+  const { login, isLoading } = useUser();
 
-  // Handle Login Form Submit
+  // Validate individual fields
+  const validateField = useCallback((name, value) => {
+    const errors = {};
+    
+    switch (name) {
+      case "email":
+        if (!value) {
+          errors.email = "Email is required";
+        } else if (!validateEmail(value)) {
+          errors.email = "Please enter a valid email address";
+        }
+        break;
+      case "password":
+        if (!value) {
+          errors.password = "Password is required";
+        } else if (value.length < 6) {
+          errors.password = "Password must be at least 6 characters";
+        }
+        break;
+      default:
+        break;
+    }
+    
+    return errors;
+  }, []);
+
+  // Handle input changes with validation
+  const handleInputChange = useCallback((field, value) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+    
+    // Clear field-specific error when user starts typing
+    if (fieldErrors[field]) {
+      setFieldErrors(prev => ({ ...prev, [field]: "" }));
+    }
+    
+    // Real-time validation
+    const errors = validateField(field, value);
+    setFieldErrors(prev => ({ ...prev, ...errors }));
+    
+    // Clear general error when user starts correcting
+    if (error) setError(null);
+  }, [fieldErrors, error, validateField]);
+
+  // Validate entire form
+  const validateForm = useCallback(() => {
+    const emailErrors = validateField("email", formData.email);
+    const passwordErrors = validateField("password", formData.password);
+    
+    const allErrors = { ...emailErrors, ...passwordErrors };
+    setFieldErrors(allErrors);
+    
+    return Object.keys(allErrors).length === 0;
+  }, [formData, validateField]);
+
+  // Handle form submission - SIMPLIFIED!
   const handleLogin = async (e) => {
     e.preventDefault();
-
-    if (!validateEmail(email)) {
-      setError("Please enter a valid email address.");
+    
+    // Validate form
+    if (!validateForm()) {
       return;
     }
 
-    if (!password) {
-      setError("Please enter the password");
-      return;
-    }
+    setError(null);
 
-    setError("");
-
-    //Login API Call
     try {
-    } catch (error) {
-      if (error.response && error.response.data.message) {
-        setError(error.response.data.message);
+      // Use the login function from UserContext
+      await login({
+        email: formData.email.toLowerCase().trim(),
+        password: formData.password,
+      });
+
+      // Check if there's a redirect URL stored
+      const redirectUrl = localStorage.getItem("redirectAfterLogin");
+      if (redirectUrl) {
+        localStorage.removeItem("redirectAfterLogin");
+        navigate(redirectUrl);
       } else {
-        setError("Something went wrong. Please try again.");
+        navigate("/dashboard");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      
+      // The UserContext already handles most error cases,
+      // but we can add component-specific error handling here
+      if (error.response?.status === 429) {
+        setError("Too many login attempts. Please try again later.");
+      } else if (error.code === "ERR_NETWORK") {
+        setError("Network error. Please check your connection and try again.");
+      } else {
+        setError(error.message || "Something went wrong. Please try again.");
       }
     }
   };
 
-  // const handleChange = (e) => {
-  //   setFormData({
-  //     ...formData,
-  //     [e.target.name]: e.target.value,
-  //   });
-  // };
+  // Handle keyboard navigation
+  const handleKeyDown = useCallback((e) => {
+    if (e.key === "Enter" && !isLoading) {
+      handleLogin(e);
+    }
+  }, [isLoading]);
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   // Handle login logic here
-  //   console.log("Login data:", formData);
-  //   // Close modal after successful login
-  //   onClose();
-  // };
+  // Toggle password visibility
+  const togglePasswordVisibility = useCallback(() => {
+    setShowPassword(prev => !prev);
+  }, []);
 
   return (
     <div className="w-full max-w-md mx-auto">
@@ -60,110 +134,107 @@ const Login = ({ onSwitchToSignup }) => {
         <p className="text-gray-600 mt-2">Sign in to your account</p>
       </div>
 
-      <form onSubmit={handleLogin}>
-        <Input
-          value={email}
-          onChange={({ target }) => setEmail(target.value)}
-          label="Email Address"
-          placeholder="Enter your email"
-          type="email"
-        />
-
-        <Input
-          value={password}
-          onChange={({ target }) => setPassword(target.value)}
-          label="Password"
-          placeholder="Enter your password"
-          type="password"
-        />
-
-        {error && <p className="text-red-500 text-xs pb-2.5">{error}</p>}
-
-        <Button type="submit" className="w-full">
-          Sign In
-        </Button>
-
-        <p className="text-[13px] text-slate-800 mt-3">
-          Don't have an account?{" "}
-          <span
-            className="font-medium text-primary underline cursor-pointer"
-            onClick={onSwitchToSignup}
-          >
-            Sign up
-          </span>
-        </p>
-      </form>
-
-      {/* <div className="space-y-4">
-        <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-            Email address
-          </label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            required
-            value={formData.email}
-            onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-gray-300"
-            placeholder="Enter your email"
-          />
-        </div>
-
-        <div>
-          <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
-            Password
-          </label>
-          <input
-            id="password"
-            name="password"
-            type="password"
-            required
-            value={formData.password}
-            onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-gray-300"
-            placeholder="Enter your password"
-          />
-        </div>
-
-        <div className="flex items-center justify-between">
-          <div className="flex items-center">
-            <input
-              id="remember-me"
-              name="remember-me"
-              type="checkbox"
-              className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+      <form onSubmit={handleLogin} noValidate>
+        <div className="space-y-4">
+          <div>
+            <Input
+              value={formData.email}
+              onChange={({ target }) => handleInputChange("email", target.value)}
+              label="Email Address"
+              placeholder="Enter your email"
+              type="email"
+              disabled={isLoading}
+              autoComplete="email"
+              aria-invalid={!!fieldErrors.email}
+              aria-describedby={fieldErrors.email ? "email-error" : undefined}
             />
-            <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-700">
-              Remember me
-            </label>
+            {fieldErrors.email && (
+              <p id="email-error" className="text-red-500 text-xs mt-1">
+                {fieldErrors.email}
+              </p>
+            )}
           </div>
-          <button
-            type="button"
-            className="text-sm text-blue-600 hover:text-blue-500"
-          >
-            Forgot password?
-          </button>
+
+          <div>
+            <div className="relative">
+              <Input
+                value={formData.password}
+                onChange={({ target }) => handleInputChange("password", target.value)}
+                label="Password"
+                placeholder="Enter your password"
+                type={showPassword ? "text" : "password"}
+                disabled={isLoading}
+                autoComplete="current-password"
+                onKeyDown={handleKeyDown}
+                aria-invalid={!!fieldErrors.password}
+                aria-describedby={fieldErrors.password ? "password-error" : undefined}
+              />
+              <button
+                type="button"
+                onClick={togglePasswordVisibility}
+                className="absolute right-3 top-9 text-gray-400 hover:text-gray-600 focus:outline-none focus:text-gray-600"
+                disabled={isLoading}
+                aria-label={showPassword ? "Hide password" : "Show password"}
+              >
+                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+              </button>
+            </div>
+            {fieldErrors.password && (
+              <p id="password-error" className="text-red-500 text-xs mt-1">
+                {fieldErrors.password}
+              </p>
+            )}
+          </div>
         </div>
 
-        <Button onClick={handleSubmit} className="w-full">
-          Sign In
-        </Button>
-      </div>
+        {/* General error message */}
+        {error && (
+          <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-md">
+            <p className="text-red-600 text-sm">{error}</p>
+          </div>
+        )}
 
-      <div className="mt-6 text-center">
-        <p className="text-sm text-gray-600">
-          Don't have an account?{" "}
-          <button
-            type="button"
-            onClick={onSwitchToSignup}
-            className="text-blue-600 hover:text-blue-500 font-medium"
+        <div className="mt-6 space-y-4">
+          <Button 
+            type="submit" 
+            className="w-full" 
+            disabled={isLoading || Object.keys(fieldErrors).some(key => fieldErrors[key])}
           >
-            Sign up
-          </button>
-        </p>
-      </div> */}
+            {isLoading ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Signing in...
+              </>
+            ) : (
+              "Sign In"
+            )}
+          </Button>
+
+          <div className="text-center">
+            <button
+              type="button"
+              className="text-sm text-blue-600 hover:text-blue-500 underline focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded"
+              disabled={isLoading}
+            >
+              Forgot your password?
+            </button>
+          </div>
+        </div>
+
+        <div className="mt-6 text-center">
+          <p className="text-sm text-slate-600">
+            Don't have an account?{" "}
+            <button
+              type="button"
+              onClick={onSwitchToSignup}
+              className="font-medium text-primary hover:text-primary/80 underline cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded"
+              disabled={isLoading}
+            >
+              Sign up
+            </button>
+          </p>
+        </div>
+      </form>
     </div>
   );
 };
