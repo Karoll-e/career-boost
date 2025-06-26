@@ -4,6 +4,7 @@ import { ArrowUpRight, CirclePlay, Sparkles } from "lucide-react";
 import React from "react";
 
 const Hero = () => {
+  
   return (
     <div className="min-h-screen w-full flex flex-col gap-10 items-center justify-center px-6 py-32 custom-scrollbar">
       <div className="text-center max-w-2xl">
