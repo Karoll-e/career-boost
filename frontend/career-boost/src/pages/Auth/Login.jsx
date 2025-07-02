@@ -20,6 +20,30 @@ const Login = ({ onSwitchToSignup }) => {
   // Use the UserContext
   const { login, isLoading } = useUser();
 
+  // Function to get user-friendly error messages
+  const getUserFriendlyError = (error) => {
+    // Log the actual error for debugging (only in development)
+    if (process.env.NODE_ENV === 'development') {
+      console.error("Actual error:", error);
+    }
+
+    // Check for specific error types we want to handle
+    if (error.response?.status === 401) {
+      return "Invalid email or password. Please try again.";
+    }
+    
+    if (error.response?.status === 429) {
+      return "Too many login attempts. Please try again later.";
+    }
+    
+    if (error.code === "ERR_NETWORK") {
+      return "Connection error. Please check your internet and try again.";
+    }
+
+    // For any other server errors, show a generic message
+    return "Unable to sign in right now. Please try again later.";
+  };
+
   // Validate individual fields
   const validateField = useCallback((name, value) => {
     const errors = {};
@@ -36,7 +60,7 @@ const Login = ({ onSwitchToSignup }) => {
         if (!value) {
           errors.password = "Password is required";
         } else if (value.length < 6) {
-          errors.password = "Password must be at least 6 characters";
+          errors.password = "Password must be at least 8 characters";
         }
         break;
       default:
@@ -74,7 +98,7 @@ const Login = ({ onSwitchToSignup }) => {
     return Object.keys(allErrors).length === 0;
   }, [formData, validateField]);
 
-  // Handle form submission - SIMPLIFIED!
+  // Handle form submission - with error filtering
   const handleLogin = async (e) => {
     e.preventDefault();
     
@@ -101,17 +125,9 @@ const Login = ({ onSwitchToSignup }) => {
         navigate("/dashboard");
       }
     } catch (error) {
-      console.error("Login error:", error);
-      
-      // The UserContext already handles most error cases,
-      // but we can add component-specific error handling here
-      if (error.response?.status === 429) {
-        setError("Too many login attempts. Please try again later.");
-      } else if (error.code === "ERR_NETWORK") {
-        setError("Network error. Please check your connection and try again.");
-      } else {
-        setError(error.message || "Something went wrong. Please try again.");
-      }
+      // Use our custom error handler instead of showing server errors
+      const userFriendlyMessage = getUserFriendlyError(error);
+      setError(userFriendlyMessage);
     }
   };
 
@@ -169,7 +185,7 @@ const Login = ({ onSwitchToSignup }) => {
                 aria-invalid={!!fieldErrors.password}
                 aria-describedby={fieldErrors.password ? "password-error" : undefined}
               />
-              <button
+              {/* <button
                 type="button"
                 onClick={togglePasswordVisibility}
                 className="absolute right-3 top-9 text-gray-400 hover:text-gray-600 focus:outline-none focus:text-gray-600"
@@ -177,7 +193,7 @@ const Login = ({ onSwitchToSignup }) => {
                 aria-label={showPassword ? "Hide password" : "Show password"}
               >
                 {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-              </button>
+              </button> */}
             </div>
             {fieldErrors.password && (
               <p id="password-error" className="text-red-500 text-xs mt-1">
@@ -187,7 +203,7 @@ const Login = ({ onSwitchToSignup }) => {
           </div>
         </div>
 
-        {/* General error message */}
+        {/* User-friendly error message only */}
         {error && (
           <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-md">
             <p className="text-red-600 text-sm">{error}</p>
