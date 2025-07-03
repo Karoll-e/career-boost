@@ -22,7 +22,7 @@ const ProfileInfoCard = () => {
         <img
           src={user.profileImageUrl}
           alt=""
-          className="w-11 h-11 bg-gray-300 rounded-full mr-3 cursor-pointer hover:opacity-80 transition-opacity"
+          className="size-10 bg-gray-300 rounded-full mr-3 cursor-pointer hover:opacity-80 transition-opacity"
           onClick={handleProfileClick}
         />
         <div>
@@ -33,10 +33,9 @@ const ProfileInfoCard = () => {
             {user.name || ""}
           </div>
           <button
-            className="text-amber-600 text-sm font-semibold cursor-pointer hover:underline"
-            onClick={handelLogout}
+            className="overflow-hidden text-ellipsis text-gray-400 text-sm font-semibold truncate"
           >
-            Logout
+            {user.email || ""}
           </button>
         </div>
       </div>
