@@ -52,8 +52,8 @@ const Dashboard = () => {
   }, []);
   return (
     <DashboardLayout>
-      <div className="container mx-auto pt-4 pb-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-7 pt-1 pb-6 px-4 md:px-0">
+      <div className="mx-auto max-w-screen-lg relative">
+        <div className="relative grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-7 pt-1 pb-6">
           {sessions?.map((data, index) => (
             <SummaryCard
               key={data?._id}
@@ -73,9 +73,10 @@ const Dashboard = () => {
             />
           ))}
         </div>
-
+        
+        {/* Add New Button */}
         <button
-          className="h-12 md:h-12 flex items-center justify-center gap-3 bg-linear-to-r from-[#FF9324] to-[#e99a4b] text-sm font-semibold text-white px-7 py-2.5 rounded-full hover:bg-black hover:text-white transition-colors cursor-pointer hover:shadow-2xl hover:shadow-orange-300 fixed bottom-10 md:bottom-20 right-10 md:right-20"
+          className="h-12 md:h-12 flex items-center justify-center gap-3 bg-gradient-to-r from-[#FF9324] to-[#e99a4b] text-sm font-semibold text-white px-7 py-2.5 rounded-full hover:bg-black hover:text-white transition-colors cursor-pointer hover:shadow-2xl hover:shadow-orange-300 fixed bottom-10 md:bottom-20 right-10 md:right-20"
           onClick={() => setOpenCreateModal(true)}
         >
           <Plus className="text-2xl text-white" />
@@ -83,6 +84,7 @@ const Dashboard = () => {
         </button>
       </div>
 
+      {/* Modals */}
       <Modal
         isOpen={openCreateModal}
         onClose={() => {

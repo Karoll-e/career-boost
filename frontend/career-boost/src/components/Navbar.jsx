@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Modal from "./Modal";
 import Login from "../pages/Auth/Login";
 import SignUp from "../pages/Auth/SignUp";
-import LogoIcon from "../assets/logo";
+import LogoIcon from "../assets/Logo";
 import { useBodyScrollLock } from "../hooks/useBodyScrollLock";
 import { useContext } from "react";
 import { UserContext } from "../context/userContext";
