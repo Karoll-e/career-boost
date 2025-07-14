@@ -170,8 +170,8 @@ const Navbar = () => {
         </SidebarContent>
 
         <SidebarFooter>
-          <div className="flex gap-3 p-2">
-            <Avatar>
+          <div className="flex gap-3 ">
+            <Avatar className="h-12 w-12">
               <AvatarImage src={user?.profileImageUrl} alt="user profile pic" />
               <AvatarFallback>{getUserInitials(user?.name)}</AvatarFallback>
             </Avatar>
@@ -179,7 +179,7 @@ const Navbar = () => {
               <span className="font-semibold tracking-tight">
                 {user?.name || "Loading..."}
               </span>
-              <span className="leading-none text-sm text-muted-foreground">
+              <span className="leading-none text-xs text-muted-foreground">
                 {user?.email || "Loading..."}
               </span>
             </div>
