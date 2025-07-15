@@ -1,5 +1,5 @@
 import React from "react";
-import { AppSidebar } from "./Navbar"; // Adjust path as needed
+import { AppSidebar } from "./AppSidebar";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 
 const DashboardLayout = ({ children }) => {
