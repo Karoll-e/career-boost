@@ -8,7 +8,7 @@ const RoleInfoHeader = ({
   description,
   lastUpdated,
 }) => {
-  return <div className="bg-white relative max-w-screen-lg mx-auto">
+  return <div className="bg-gray-50 relative max-w-screen-lg mx-auto">
       <div className="container mx-auto px-10 md:px-0">
         <div className="h-[200px] flex flex-col justify-center relative z-10">
           <div className="flex items-start">
@@ -39,7 +39,7 @@ const RoleInfoHeader = ({
           </div>
         </div>
 
-        <div className="w-[40vw] md:w-[30vw] h-[200px] flex items-center justify-center bg-white overflow-hidden absolute top-0 right-0">
+        <div className="w-[40vw] md:w-[30vw] h-[200px] flex items-center justify-center bg-gray-50 overflow-hidden absolute top-0 right-0">
           <div className="w-16 h-16 bg-lime-400 blur-[65px] animate-blob1" />
           <div className="w-16 h-16 bg-teal-400 blur-[65px] animate-blob2" />
           <div className="w-16 h-16 bg-cyan-300 blur-[45px] animate-blob3" />
