@@ -211,6 +211,8 @@ const UserProvider = ({ children }) => {
       // Continue with local logout even if API call fails
     } finally {
       clearUser();
+      // Use window.location for navigation (works without Router context)
+      window.location.href = "/";
     }
   }, [clearUser]);
 
