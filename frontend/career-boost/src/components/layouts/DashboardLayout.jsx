@@ -1,21 +1,18 @@
-import React, { useContext } from "react";
-import { UserContext } from "../../context/userContext";
-import Navbar from "./Navbar";
+import React from "react";
+import { AppSidebar } from "./Navbar"; // Adjust path as needed
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 
 const DashboardLayout = ({ children }) => {
-  const { user } = useContext(UserContext);
   return (
-    <div className="min-h-screen bg-gray-50 flex">
-      <Navbar />
-
-      {user && (
-        <div className="flex-1 md:ml-0"> {/* Add left margin to account for sidebar on desktop */}
-          <main className="p-4 md:p-6 lg:p-4 min-h-screen">
-            {children}
-          </main>
-        </div>
-      )}
-    </div>
+    <SidebarProvider>
+      <div className="flex gap-4"> {/* or gap-x-4 for horizontal space */}
+        <AppSidebar />
+        <main className="flex-1 p-4">
+          <SidebarTrigger />
+          {children}
+        </main>
+      </div>
+    </SidebarProvider>
   );
 };
 
