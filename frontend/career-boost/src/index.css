@@ -53,7 +53,7 @@
 }
 
 .animate-text-shine {
-  animation: text-shine 3s ease-in-out infinite alternate;
+  animation: text-shine 2s ease-in-out infinite alternate;
 }
 
 @keyframes blob1 {
