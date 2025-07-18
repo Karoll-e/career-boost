@@ -52,13 +52,19 @@ axiosInstance.interceptors.response.use(
       
       switch (status) {
         case 401:
-          // Handle unauthorized - clear token and redirect
+          // Handle unauthorized - clear token and redirect only if on protected routes
           removeToken();
           
-          // Avoid infinite redirects by checking current path
-          if (window.location.pathname !== "/" && window.location.pathname !== "/login") {
+          // Only redirect if we're on a protected route (dashboard, interview-prep, etc.)
+          const protectedRoutes = ['/dashboard', '/interview-prep'];
+          const currentPath = window.location.pathname;
+          const isOnProtectedRoute = protectedRoutes.some(route => 
+            currentPath.startsWith(route)
+          );
+          
+          if (isOnProtectedRoute) {
             // Store the attempted URL for redirect after login
-            localStorage.setItem("redirectAfterLogin", window.location.pathname);
+            localStorage.setItem("redirectAfterLogin", currentPath);
             window.location.href = "/";
           }
           break;
