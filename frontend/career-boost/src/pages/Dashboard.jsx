@@ -1,6 +1,6 @@
 import React from "react";
 import DashboardLayout from "../components/layouts/DashboardLayout";
-import DashboardHeader from "./InterviewPrep/components/dashboard/DashboardHeader";
+import DashboardHeader from "./dashboard/DashboardHeader";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 
 function Dashboard() {
