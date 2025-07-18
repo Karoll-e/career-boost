@@ -1,3 +1,13 @@
+import {
+  LayoutDashboard,
+  FileText,
+  MessageSquare,
+  Settings,
+  LogOut,
+  User,
+} from "lucide-react"
+import LogoIcon from '../assets/Logo'
+
 export const CARD_BG = [
   { id: 1, bgcolor: 'linear-gradient(135deg, #e6f8f3 0%, #f7fcfa 100%)' },
   { id: 2, bgcolor: 'linear-gradient(135deg, #fef9e7 0%, #fffdf4 100%)' },
@@ -10,6 +20,35 @@ export const CARD_BG = [
   { id: 9, bgcolor: 'linear-gradient(135deg, #f0ecff 0%, #f7f5ff 100%)' },
   { id: 10, bgcolor: 'linear-gradient(135deg, #fef2f2 0%, #fff8f8 100%)' },
 ];
+
+export const SIDEBAR_ITEMS = {
+  navMain:[
+    {
+      title: "Dashboard",
+      url: "/dashboard",
+      icon: LayoutDashboard,
+      isActive: true,
+    },
+    {
+      title: "Resumes",
+      url: "/resumes",
+      icon: FileText,
+    },
+    {
+      title: "Interview Prep",
+      url: "/interview-prep",
+      icon: MessageSquare,
+    },
+  ],
+  teams:[
+    {
+      name: "CareerBoost",
+      logo: LogoIcon,
+      plan: "Free Plan",
+    },
+  ]
+  
+};
 
 export const APP_FEATURES = [
     {
