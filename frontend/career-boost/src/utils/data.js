@@ -91,25 +91,25 @@ export const APP_FEATURES = [
       title: "Create a new CV",
       description: "Boost your career with our AI-powered resume builder",
       icon: resumeCardIllustration,
-      bgColor: "from-purple-50 to-purple-100/60",
-      borderColor: "border-purple-200",
-      hoverBorderColor: "hover:border-purple-300",
-      hoverShadowColor: "hover:shadow-purple-100/50",
-      buttonBgColor: "bg-purple-600",
-      buttonHoverBgColor: "hover:bg-purple-700",
-      accentColor: "text-purple-600"
+      bgColor: "from-indigo-50/80 to-indigo-50/60",
+      borderColor: "border-indigo-200",
+      hoverBorderColor: "hover:border-indigo-300",
+      hoverShadowColor: "hover:shadow-indigo-100/50",
+      buttonBgColor: "bg-indigo-600",
+      buttonHoverBgColor: "hover:bg-indigo-700",
+      accentColor: "text-indigo-600"
     },
     {
       id: 'interview-prep',
       title: "Interview Prep",
       description: "Practice with mock interviews and get personalized feedback",
       icon: interviewCardIllustration,
-      bgColor: "from-emerald-50 to-emerald-100/60",
-      borderColor: "border-emerald-200",
-      hoverBorderColor: "hover:border-emerald-300",
-      hoverShadowColor: "hover:shadow-emerald-100/50",
-      buttonBgColor: "bg-emerald-600",
-      buttonHoverBgColor: "hover:bg-emerald-700",
-      accentColor: "text-emerald-600"
+      bgColor: "from-teal-50/80 to-teal-50/60",
+      borderColor: "border-teal-200",
+      hoverBorderColor: "hover:border-teal-300",
+      hoverShadowColor: "hover:shadow-teal-100/50",
+      buttonBgColor: "bg-teal-600",
+      buttonHoverBgColor: "hover:bg-teal-700",
+      accentColor: "text-teal-600"
     }
   ];
