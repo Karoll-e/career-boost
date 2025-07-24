@@ -26,14 +26,14 @@ const QuickActionCard = ({
     `}
     onClick={onAction}
   >
-    <CardContent className="p-2 sm:p-5 md:p-6 lg:p-7 xl:p-8">
+    <CardContent className="p-4 sm:p-5 md:p-6 lg:p-7 xl:p-8">
       <div className="flex items-center gap-3 sm:gap-4 md:gap-5 lg:gap-6">
         <div className="flex flex-col justify-center space-y-2 sm:space-y-3 md:space-y-3.5 lg:space-y-4 flex-1 min-w-0">
           <div className="space-y-1 sm:space-y-1.5 md:space-y-2">
             <h2 className="text-lg sm:text-xl md:text-xl lg:text-2xl font-bold text-gray-900 leading-tight group-hover:text-gray-800 transition-colors">
               {title}
             </h2>
-            <p className="text-gray-600 text-sm sm:text-sm md:text-base leading-relaxed">
+            <p className="text-balance text-gray-600 text-sm  sm:text-sm md:text-base leading-relaxed">
               {description}
             </p>
           </div>
@@ -41,7 +41,7 @@ const QuickActionCard = ({
           <div className="flex items-center gap-2 sm:gap-2.5 md:gap-3">
             <Button className={`
               inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 md:px-4 py-1.5 sm:py-2 md:py-2.5 
-              rounded-lg sm:rounded-lg md:rounded-xl font-medium text-xs sm:text-sm 
+              rounded-md sm:rounded-md md:rounded-md font-medium text-xs sm:text-sm 
               transition-all duration-200 shadow-sm
               ${buttonBgColor} ${buttonTextColor} ${buttonHoverBgColor}
               transform group-hover:scale-105 group-hover:shadow-md
@@ -65,7 +65,7 @@ const QuickActionCard = ({
           <img 
             src={icon} 
             alt="" 
-            className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-32 lg:h-32 xl:w-36 xl:h-36 2xl:w-40 2xl:h-40 object-contain drop-shadow-lg group-hover:scale-105 transition-transform duration-300"
+            className="relative w-20 h-20 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-32 lg:h-32 xl:w-36 xl:h-36 2xl:w-40 2xl:h-40 object-contain drop-shadow-lg group-hover:scale-105 transition-transform duration-300"
           />
         </div>
       </div>
