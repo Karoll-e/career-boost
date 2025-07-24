@@ -6,7 +6,8 @@ import LandingPage from "./pages/LandingPage";
 // import Dashboard from "./pages/Home/Dashboard";
 import Dashboard from "./pages/Dashboard";
 import InterviewPrep from "./pages/InterviewPrep/InterviewPrep";
- import ProtectedRoute from "./components/ProtectedRoute";
+import NotFound from "./pages/NotFound";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const App = () => {
   return (
@@ -17,13 +18,13 @@ const App = () => {
             {/* Default Route */}
             <Route path="/" element={<LandingPage />} />
 
-            <Route 
-              path="/dashboard" 
+            <Route
+              path="/dashboard"
               element={
                 <ProtectedRoute>
                   <Dashboard />
                 </ProtectedRoute>
-              } 
+              }
             />
             <Route
               path="/interview-prep/:sessionId"
@@ -33,6 +34,7 @@ const App = () => {
                 </ProtectedRoute>
               }
             />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Router>
 
