@@ -7,6 +7,8 @@ import {
   User,
 } from "lucide-react"
 import LogoIcon from '../assets/Logo'
+import resumeCardIllustration from "../assets/oc-on-the-laptop.svg";
+import interviewCardIllustration from "../assets/oc-growing.svg";
 
 export const CARD_BG = [
   { id: 1, bgcolor: 'linear-gradient(135deg, #e6f8f3 0%, #f7fcfa 100%)' },
@@ -83,3 +85,31 @@ export const APP_FEATURES = [
     },
   ];
   
+  export const QUICK_ACTIONS = [
+    {
+      id: 'cv-builder',
+      title: "Create a new CV",
+      description: "Boost your career with our AI-powered resume builder",
+      icon: resumeCardIllustration,
+      bgColor: "from-indigo-50/80 to-indigo-50/60",
+      borderColor: "border-indigo-200",
+      hoverBorderColor: "hover:border-indigo-300",
+      hoverShadowColor: "hover:shadow-indigo-100/50",
+      buttonBgColor: "bg-indigo-600",
+      buttonHoverBgColor: "hover:bg-indigo-700",
+      accentColor: "text-indigo-600"
+    },
+    {
+      id: 'interview-prep',
+      title: "Interview Prep",
+      description: "Practice with mock interviews and get personalized feedback",
+      icon: interviewCardIllustration,
+      bgColor: "from-teal-50/80 to-teal-50/60",
+      borderColor: "border-teal-200",
+      hoverBorderColor: "hover:border-teal-300",
+      hoverShadowColor: "hover:shadow-teal-100/50",
+      buttonBgColor: "bg-teal-600",
+      buttonHoverBgColor: "hover:bg-teal-700",
+      accentColor: "text-teal-600"
+    }
+  ];
