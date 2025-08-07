@@ -6,6 +6,7 @@ import LandingPage from "./pages/LandingPage";
 // import Dashboard from "./pages/Home/Dashboard";
 import Dashboard from "./pages/Dashboard";
 import CreateInterviewSession from "./pages/CreateInterviewSession";
+import InterviewSessions from "./pages/InterviewSessions";
 import InterviewPrep from "./pages/InterviewPrep/InterviewPrep";
 import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -32,6 +33,14 @@ const App = () => {
               element={
                 <ProtectedRoute>
                   <CreateInterviewSession />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/interview-prep"
+              element={
+                <ProtectedRoute>
+                  <InterviewSessions />
                 </ProtectedRoute>
               }
             />
