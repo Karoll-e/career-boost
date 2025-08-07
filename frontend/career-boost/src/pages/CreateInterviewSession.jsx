@@ -7,6 +7,7 @@ import SpinnerLoader from "../components/Loader/SpinnerLoader";
 import axiosInstance from "../utils/axiosInstance";
 import { API_PATHS } from "../utils/apiPaths";
 import { ArrowLeft } from "lucide-react";
+import { Button } from "../components/ui/button";
 
 const CreateInterviewSession = () => {
   const [formData, setFormData] = useState({
@@ -82,24 +83,24 @@ const CreateInterviewSession = () => {
           {/* Header with Back Button */}
           <div className="mb-8 lg:mb-6 ">
             <button
-              onClick={() => navigate('/dashboard')}
+              onClick={() => navigate('/interview-prep')}
               className="flex items-center gap-2 text-gray-600 hover:text-gray-800 transition-colors mb-6"
             >
               <ArrowLeft className="w-4 h-4" />
-              Back to Dashboard
+              Back to Sessions
             </button>
             <div className="text-left lg:text-left">
               <h1 className="text-3xl lg:text-3xl font-bold text-gray-900 mb-3">
                 Create Interview Session
               </h1>
-              <p className="text-gray-600 text-sm">
+              <p className="text-gray-600 text-sm font-medium">
               Elevate your interview skills with AI Mock Interview that offers realistic practice sessions, and job-specific questions to transform your weaknesses into strengths. Practice anytime, anywhere—no scheduling or stress required—and walk into your real interview fully prepared and confident.
               </p>
             </div>
           </div>
 
           {/* Form Card */}
-          <div className="w-full bg-white rounded-2xl overflow-hidden shadow-md border border-gray-200">
+          <div className="w-full bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-200">
           
 
             {/* Form Content */}
@@ -165,14 +166,14 @@ const CreateInterviewSession = () => {
                   >
                     Cancel
                   </button> */}
-                  <button
+                  <Button
                     type="submit"
-                    className="w-full sm:flex-1 bg-teal-600 text-white px-8 py-3 rounded-lg hover:bg-teal-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 font-medium cursor-pointer"
+                    className="w-full sm:flex-1 text-white px-8 py-3 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 font-medium cursor-pointer"
                     disabled={isLoading}
                   >
                     {isLoading && <SpinnerLoader />}
                     Create Session
-                  </button>
+                  </Button>
                 </div>
               </form>
             </div>
