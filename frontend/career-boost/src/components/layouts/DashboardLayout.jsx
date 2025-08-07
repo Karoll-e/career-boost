@@ -16,7 +16,7 @@ const DashboardLayout = ({ children }) => {
     <SidebarProvider>
       <div className="flex gap-4"> {/* or gap-x-4 for horizontal space */}
         <AppSidebar />
-        <main className="flex-1 p-4">
+        <main className="flex-1 px-4 sm:px-6 md:px-8 lg:px-16 py-4">
         <div className="flex items-center gap-4 mb-4">
             <SidebarTrigger />
             <h2 className="text-lg font-semibold text-gray-800">
