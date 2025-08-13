@@ -2,15 +2,22 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import DashboardLayout from "../components/layouts/DashboardLayout";
 import { Button } from "../components/ui/button";
-import { Plus, Clock, Target, BookOpen } from "lucide-react";
+import { Plus, Clock, Target, BookOpen, Trash2, TriangleAlert } from "lucide-react";
 import axiosInstance from "../utils/axiosInstance";
 import { API_PATHS } from "../utils/apiPaths";
 import SpinnerLoader from "../components/Loader/SpinnerLoader";
+import Modal from "../components/Modal";
+import DeleteAlertContent from "../components/DeleteAlertContent";
+import toast from "react-hot-toast";
 
 const InterviewSessions = () => {
   const [sessions, setSessions] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [openDeleteAlert, setOpenDeleteAlert] = useState({
+    open: false,
+    data: null,
+  });
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,6 +37,43 @@ const InterviewSessions = () => {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const deleteSession = async (sessionData) => {
+    try {
+      await axiosInstance.delete(API_PATHS.SESSION.DELETE(sessionData?._id));
+      toast.success("Session Deleted Successfully", {
+        position: "bottom-center",
+        duration: 2000,
+        style: {
+          padding: "10px",
+          border: "1px solid #bffcd9",
+          background: "#ecfdf3",
+          color: "#008a2e"
+        },
+      });
+      setOpenDeleteAlert({
+        open: false,
+        data: null,
+      });
+      fetchSessions();
+    } catch (error) {
+      console.error("Error deleting session data:", error);
+      toast.error("Failed to delete session", {
+        duration: 2000,
+        style: {
+          padding: "10px",
+          border: "2px solid #ffe0e1",
+          background: "#fff0f0",
+          color: "#e60000"
+        },
+      });
+    }
+  };
+
+  const handleDeleteClick = (e, session) => {
+    e.stopPropagation(); // Prevent navigation when clicking delete
+    setOpenDeleteAlert({ open: true, data: session });
   };
 
   const handleSessionClick = (sessionId) => {
@@ -90,11 +134,6 @@ const InterviewSessions = () => {
             </div>
           )}
 
-          {/* Debug info - remove this after confirming it works */}
-          <div className="mb-4 p-2 bg-gray-100 rounded text-sm">
-            Debug: Sessions count: {sessions.length}
-          </div>
-
           {/* Sessions Grid */}
           {sessions.length === 0 ? (
             <div className="text-center py-16">
@@ -131,9 +170,18 @@ const InterviewSessions = () => {
                       <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mb-3">
                         <Target className="w-6 h-6 text-white" />
                       </div>
-                      <span className="text-xs text-gray-500 font-medium">
-                        {formatDate(session.createdAt)}
-                      </span>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs text-gray-500 font-medium">
+                          {formatDate(session.createdAt)}
+                        </span>
+                        <button
+                          onClick={(e) => handleDeleteClick(e, session)}
+                          className="p-1 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded transition-colors"
+                          title="Delete session"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                      </div>
                     </div>
 
                     {/* Session Title */}
@@ -172,6 +220,70 @@ const InterviewSessions = () => {
           )}
         </div>
       </div>
+
+      {/* Delete Modal */}
+      <Modal
+        isOpen={openDeleteAlert?.open}
+        onClose={() => {
+          setOpenDeleteAlert({ open: false, data: null });
+        }}
+        hideHeader={true}
+        maxWidth="max-w-md"
+      >
+        <div className="p-6">
+          {/* Icon and Title */}
+          <div className="text-center mb-6">
+            <div className="w-16 h-16 bg-red-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+              <TriangleAlert className="w-8 h-8 text-red-500" />
+            </div>
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">
+              Delete Interview Session
+            </h3>
+            <p className="text-gray-600 text-sm text-pretty">
+              Are you sure you want to delete <span className="font-semibold">"{openDeleteAlert?.data?.role}"</span> session? This action <span className="font-semibold">CANNOT</span> be undone.
+            </p>
+          </div>
+
+          {/* Session Details Card */}
+          {openDeleteAlert?.data && (
+            <div className="bg-gray-50 rounded-lg p-4 mb-6">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <Target className="w-5 h-5 text-white" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h4 className="font-medium text-gray-900 truncate">
+                    {openDeleteAlert.data.role}
+                  </h4>
+                  <div className="flex items-center gap-4 text-xs text-gray-500 mt-1">
+                    <span>{openDeleteAlert.data.experience} experience</span>
+                    <span>{openDeleteAlert.data.questions?.length || 0} questions</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Action Buttons */}
+          <div className="flex gap-3">
+            <Button
+              onClick={() => {
+                setOpenDeleteAlert({ open: false, data: null });
+              }}
+              variant="outline"
+              className="flex-1 border-gray-300 text-gray-700 hover:bg-gray-50"
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={() => deleteSession(openDeleteAlert.data)}
+              className="flex-1 bg-red-600 hover:bg-red-700 text-white"
+            >
+              Delete Session
+            </Button>
+          </div>
+        </div>
+      </Modal>
     </DashboardLayout>
   );
 };
