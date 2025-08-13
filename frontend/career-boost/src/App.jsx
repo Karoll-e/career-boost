@@ -14,7 +14,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 const App = () => {
   return (
     <UserProvider>
-      <div className="h-screen overflow-y-auto ">
+      <div className="h-screen overflow-y-auto bg-gradient-to-br from-slate-50 to-slate-100  ">
         <Router>
           <Routes>
             {/* Default Route */}
