@@ -32,8 +32,8 @@ export const SIDEBAR_ITEMS = {
       isActive: true,
     },
     {
-      title: "Resumes",
-      url: "/resumes",
+      title: "Resume Builder",
+      url: "/resume-builder",
       icon: FileText,
     },
     {
