@@ -22,7 +22,7 @@ const QuickActionCard = ({
       w-full max-w-2xl cursor-pointer transition-all duration-300 ease-in-out
       bg-gradient-to-br ${bgColor} ${borderColor} ${hoverBorderColor} ${hoverShadowColor}
       hover:shadow-lg sm:hover:shadow-xl md:hover:shadow-xl lg:hover:shadow-2xl 
-      hover:-translate-y-0.5 sm:hover:-translate-y-0.5 md:hover:-translate-y-1 group
+      hover:-translate-y-0.5 sm:hover:-translate-y-0.5 md:hover:-translate-y-1 group bg-white/70 backdrop-blur-sm rounded-xl p-4 border border-slate/60 shadow-md transition-all duration-300 
     `}
     onClick={onAction}
   >

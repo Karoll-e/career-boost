@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import DashboardLayout from "../components/layouts/DashboardLayout";
 import { Button } from "../components/ui/button";
-import { Plus, Clock, Target, BookOpen, Trash2, TriangleAlert } from "lucide-react";
+import { Plus, Clock, Target, BookOpen, Trash2, TriangleAlert, Edit } from "lucide-react";
 import axiosInstance from "../utils/axiosInstance";
 import { API_PATHS } from "../utils/apiPaths";
 import SpinnerLoader from "../components/Loader/SpinnerLoader";
@@ -74,6 +74,11 @@ const InterviewSessions = () => {
   const handleDeleteClick = (e, session) => {
     e.stopPropagation(); // Prevent navigation when clicking delete
     setOpenDeleteAlert({ open: true, data: session });
+  };
+
+  const handleEditClick = (e, sessionId) => {
+    e.stopPropagation(); // Prevent navigation when clicking edit
+    navigate(`/edit-interview-session/${sessionId}`);
   };
 
   const handleSessionClick = (sessionId) => {
@@ -174,6 +179,13 @@ const InterviewSessions = () => {
                         <span className="text-xs text-gray-500 font-medium">
                           {formatDate(session.createdAt)}
                         </span>
+                        <button
+                          onClick={(e) => handleEditClick(e, session._id)}
+                          className="p-1 text-gray-400 hover:text-blue-500 hover:bg-blue-50 rounded transition-colors"
+                          title="Edit session"
+                        >
+                          <Edit className="w-4 h-4" />
+                        </button>
                         <button
                           onClick={(e) => handleDeleteClick(e, session)}
                           className="p-1 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded transition-colors"

@@ -12,7 +12,7 @@ export const useDashboard = () => {
     switch (actionId) {
       case 'cv-builder':
         // Navigate to CV builder
-        console.log('Navigate to CV builder');
+        navigate('/resume-builder');
         break;
       case 'interview-prep':
         // Navigate to interview prep form

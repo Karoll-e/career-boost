@@ -37,7 +37,7 @@ const Hero = () => {
           </Button>
         </div>
       </div>
-      <div className="w-full max-w-screen-xl mx-auto aspect-video bg-accent rounded-xl" />
+      <div className="w-full max-w-screen-xl mx-auto aspect-video bg-white rounded-xl" />
     </div>
   );
 };

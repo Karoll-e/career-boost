@@ -6,8 +6,10 @@ import LandingPage from "./pages/LandingPage";
 // import Dashboard from "./pages/Home/Dashboard";
 import Dashboard from "./pages/Dashboard";
 import CreateInterviewSession from "./pages/CreateInterviewSession";
+import EditInterviewSession from "./pages/EditInterviewSession";
 import InterviewSessions from "./pages/InterviewSessions";
 import InterviewPrep from "./pages/InterviewPrep/InterviewPrep";
+import ResumeBuilder from "./pages/ResumeBuilder";
 import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -37,6 +39,14 @@ const App = () => {
               }
             />
             <Route
+              path="/edit-interview-session/:id"
+              element={
+                <ProtectedRoute>
+                  <EditInterviewSession />
+                </ProtectedRoute>
+              }
+            />
+            <Route
               path="/interview-prep"
               element={
                 <ProtectedRoute>
@@ -49,6 +59,14 @@ const App = () => {
               element={
                 <ProtectedRoute>
                   <InterviewPrep />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/resume-builder"
+              element={
+                <ProtectedRoute>
+                  <ResumeBuilder />
                 </ProtectedRoute>
               }
             />

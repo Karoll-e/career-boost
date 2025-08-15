@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import DashboardLayout from "../components/layouts/DashboardLayout";
 import Input from "../components/Inputs/Input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../components/ui/select";
@@ -12,8 +12,9 @@ import SpinnerLoader from "../components/Loader/SpinnerLoader";
 import axiosInstance from "../utils/axiosInstance";
 import { API_PATHS } from "../utils/apiPaths";
 import { Button } from "../components/ui/button";
+import toast from "react-hot-toast";
 
-const CreateInterviewSession = () => {
+const EditInterviewSession = () => {
   // IT profession options for the role dropdown
   const roleOptions = [
     { value: "frontend-developer", label: "Frontend Developer" },
@@ -164,8 +165,61 @@ const CreateInterviewSession = () => {
   const [selectedFilter, setSelectedFilter] = useState('all');
   const [showAllTopics, setShowAllTopics] = useState(false);
   const [customTopic, setCustomTopic] = useState('');
+  const [sessionLoading, setSessionLoading] = useState(true);
 
   const navigate = useNavigate();
+  const { id } = useParams();
+
+  useEffect(() => {
+    fetchSession();
+  }, [id]);
+
+  const fetchSession = async () => {
+    try {
+      setSessionLoading(true);
+      const response = await axiosInstance.get(API_PATHS.SESSION.GET_ONE(id));
+      const session = response.data.session;
+      
+      // Convert session data to form format
+      const roleValue = roleOptions.find(opt => opt.label === session.role)?.value || session.role;
+      const experienceValue = experienceOptions.find(opt => opt.label === session.experience)?.value || session.experience;
+      
+      // Convert topics string to array of values
+      let topicsArray = [];
+      if (session.topicsToFocus) {
+        const topicsLabels = session.topicsToFocus.split(', ');
+        topicsArray = topicsLabels.map(label => {
+          const topic = techStackOptions.find(opt => opt.label === label.trim());
+          return topic ? topic.value : label.toLowerCase().replace(/[^a-z0-9]/g, '-');
+        });
+        
+        // Add custom topics that weren't found in predefined options
+        topicsLabels.forEach(label => {
+          const trimmedLabel = label.trim();
+          const customValue = trimmedLabel.toLowerCase().replace(/[^a-z0-9]/g, '-');
+          if (!techStackOptions.some(opt => opt.label === trimmedLabel)) {
+            techStackOptions.push({
+              value: customValue,
+              label: trimmedLabel,
+              category: 'Custom'
+            });
+          }
+        });
+      }
+
+      setFormData({
+        role: roleValue,
+        experience: experienceValue,
+        topicsToFocus: topicsArray,
+        description: session.description || "",
+      });
+    } catch (error) {
+      setError("Failed to load session");
+      console.error("Error fetching session:", error);
+    } finally {
+      setSessionLoading(false);
+    }
+  };
 
   const handleChange = (key, value) => {
     setFormData((prevData) => ({
@@ -259,7 +313,7 @@ const CreateInterviewSession = () => {
     setCustomTopic('');
   };
 
-  const handleCreateSession = async (e) => {
+  const handleUpdateSession = async (e) => {
     e.preventDefault();
 
     const { role, experience, topicsToFocus } = formData;
@@ -286,7 +340,7 @@ const CreateInterviewSession = () => {
       });
       const topicsString = selectedTopicLabels.join(', ');
 
-      // Call AI API to generate questions
+      // First, generate new questions based on updated session info
       const aiResponse = await axiosInstance.post(
         API_PATHS.AI.GENERATE_QUESTIONS,
         {
@@ -300,16 +354,27 @@ const CreateInterviewSession = () => {
       // Should be array like [{question, answer}, ...]
       const generatedQuestions = aiResponse.data;
 
-      const response = await axiosInstance.post(API_PATHS.SESSION.CREATE, {
-        ...formData,
+      // Update session with new questions
+      const response = await axiosInstance.put(API_PATHS.SESSION.UPDATE(id), {
         role: roleLabel, // Store the readable label in the database
         experience: experienceLabel, // Store the readable experience label
         topicsToFocus: topicsString, // Store as comma-separated string
-        questions: generatedQuestions,
+        description: formData.description,
+        questions: generatedQuestions, // Include the new questions
       });
 
-      if (response.data?.session?._id) {
-        navigate(`/interview-prep/${response.data?.session?._id}`);
+      if (response.data?.success) {
+        toast.success("Session updated successfully with new questions!", {
+          position: "bottom-center",
+          duration: 3000,
+          style: {
+            padding: "10px",
+            border: "1px solid #bffcd9",
+            background: "#ecfdf3",
+            color: "#008a2e"
+          },
+        });
+        navigate(`/interview-prep/${id}`);
       }
     } catch (error) {
       if (error.response && error.response.data.message) {
@@ -321,6 +386,16 @@ const CreateInterviewSession = () => {
       setIsLoading(false);
     }
   };
+
+  if (sessionLoading) {
+    return (
+      <DashboardLayout>
+        <div className="min-h-screen flex items-center justify-center">
+          <SpinnerLoader />
+        </div>
+      </DashboardLayout>
+    );
+  }
 
   return (
     <DashboardLayout>
@@ -336,30 +411,19 @@ const CreateInterviewSession = () => {
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back to Sessions
             </Button>
-
-            {/* <div className="space-y-4">
-              <h1 className="text-4xl font-bold text-slate-900 tracking-tight">
-                Create Interview Session
-              </h1>
-              <p className="text-lg text-slate-600 leading-relaxed max-w-3xl">
-                Elevate your interview skills with AI Mock Interview that offers realistic practice sessions, and
-                job-specific questions to transform your weaknesses into strengths. Practice anytime, anywhere—no
-                scheduling or stress required—and walk into your real interview fully prepared and confident.
-              </p>
-            </div> */}
           </div>
 
           {/* Main Form Card */}
           <Card className="shadow-xl border bg-white/80 backdrop-blur-sm">
             <CardHeader className="pb-2">
-              <CardTitle className="text-2xl text-slate-900">Start Your Next Interview</CardTitle>
+              <CardTitle className="text-2xl text-slate-900">Edit Interview Session</CardTitle>
               <CardDescription className="text-base text-slate-600">
-                Customize your interview practice session to match your target role and skill level
+                Update your interview practice session settings
               </CardDescription>
             </CardHeader>
 
             <CardContent className="space-y-8">
-              <form onSubmit={handleCreateSession} className="space-y-8">
+              <form onSubmit={handleUpdateSession} className="space-y-8">
                 {/* Target Role & Experience Level Row */}
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-3">
@@ -537,7 +601,7 @@ const CreateInterviewSession = () => {
                   </div>
                 )}
 
-                {/* Create Button */}
+                {/* Update Button */}
                 <div className="pt-6">
                   <Button
                     type="submit"
@@ -546,7 +610,7 @@ const CreateInterviewSession = () => {
                     disabled={isLoading}
                   >
                     {isLoading && <SpinnerLoader />}
-                    Create Session
+                    Update Session
                   </Button>
                 </div>
               </form>
@@ -558,4 +622,4 @@ const CreateInterviewSession = () => {
   );
 };
 
-export default CreateInterviewSession;
+export default EditInterviewSession;

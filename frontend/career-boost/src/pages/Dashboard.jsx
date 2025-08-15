@@ -22,7 +22,7 @@ function Dashboard() {
           <UserGreeting name={user.name} />
 
           {/* Quick Actions Section */}
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-1 xl:grid-cols-2 gap-6 md:gap-8">
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-1 xl:grid-cols-2 gap-6 md:gap-8 ">
             {QUICK_ACTIONS.map((action) => (
               <QuickActionCard
                 key={action.id}
