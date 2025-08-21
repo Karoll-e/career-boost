@@ -1,13 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, Play, Users, Shield, Sparkles } from 'lucide-react';
 import { Button } from '../../../components/ui/button';
+import AuthModal from '../../../components/AuthModal';
+import { useUser } from '../../../context/userContext';
 
 const HeroSection = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const { isAuthenticated } = useUser();
+
+  const handlePrimaryCTAClick = () => {
+    if (isAuthenticated) {
+      // If user is already authenticated, redirect to dashboard
+      navigate('/dashboard');
+    } else {
+      // If user is not authenticated, open the auth modal
+      setIsAuthModalOpen(true);
+    }
+  };
 
   const fadeInUp = {
     initial: { opacity: 0, y: 60 },
@@ -81,7 +95,7 @@ const HeroSection = () => {
             >
               <Button
                 size="lg"
-                onClick={() => navigate('/')}
+                onClick={handlePrimaryCTAClick}
                 className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200 group"
               >
                 {t('landing.hero.primaryCTA')}
@@ -195,6 +209,12 @@ const HeroSection = () => {
           </motion.div>
         </div>
       </div>
+      
+      {/* Auth Modal */}
+      <AuthModal 
+        isOpen={isAuthModalOpen} 
+        onClose={() => setIsAuthModalOpen(false)} 
+      />
     </section>
   );
 };

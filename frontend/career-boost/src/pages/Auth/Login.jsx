@@ -227,13 +227,13 @@ const Login = ({ onSwitchToSignup }) => {
           </Button>
 
           <div className="text-center">
-            <button
+            {/* <button
               type="button"
               className="text-sm text-blue-600 hover:text-blue-500 underline focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded"
               disabled={isLoading}
             >
               Forgot your password?
-            </button>
+            </button> */}
           </div>
         </div>
 

@@ -1,10 +1,27 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowUpRight, CirclePlay, Sparkles } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 import heroImg from "../assets/hero7.png";
+import AuthModal from "./AuthModal";
+import { useUser } from "../context/userContext";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const { isAuthenticated } = useUser();
+  const navigate = useNavigate();
+
+  const handleGetStartedClick = () => {
+    if (isAuthenticated) {
+      // If user is already authenticated, redirect to dashboard
+      navigate("/dashboard");
+    } else {
+      // If user is not authenticated, open the auth modal
+      setIsAuthModalOpen(true);
+    }
+  };
+
   return (
     <div className="min-h-screen w-full flex flex-col gap-10 items-center justify-center px-6 py-32 custom-scrollbar">
       <div className="text-center max-w-2xl">
@@ -25,7 +42,7 @@ const Hero = () => {
           preparation to mastery — your ultimate interview toolkit is here.
         </p>
         <div className="mt-6 flex items-center justify-center gap-4">
-          <Button size="lg" className="text-base">
+          <Button size="lg" className="text-base" onClick={handleGetStartedClick}>
             Get Started <ArrowUpRight className="!h-5 !w-5" />
           </Button>
         </div>
@@ -35,6 +52,12 @@ const Hero = () => {
         src={heroImg}
         alt=""
         className="w-full max-w-screen-xl mx-auto aspect-video bg-white rounded-xl"
+      />
+
+      {/* Auth Modal */}
+      <AuthModal 
+        isOpen={isAuthModalOpen} 
+        onClose={() => setIsAuthModalOpen(false)} 
       />
     </div>
   );

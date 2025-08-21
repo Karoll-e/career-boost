@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Sun } from "lucide-react";
+// import { Sun } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import Modal from "./Modal";
 import Login from "../pages/Auth/Login";
@@ -44,9 +44,6 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center gap-2">
-          <Button size="icon" variant="outline">
-            <Sun />
-          </Button>
           
           {user ? (
             <NavUser user={user} onLogout={handleLogout} />

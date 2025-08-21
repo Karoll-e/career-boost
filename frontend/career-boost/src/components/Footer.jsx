@@ -8,9 +8,8 @@ import LogoIcon from "../assets/Logo";
 
 const Footer = () => {
   const socialLinks = [
-    { icon: Github, url: "https://github.com/career-boost", label: "GitHub" },
-    { icon: Twitter, url: "https://twitter.com/careerboost", label: "Twitter" },
-    { icon: Linkedin, url: "https://linkedin.com/company/career-boost", label: "LinkedIn" }
+    { icon: Github, url: "https://github.com/Karoll-e", label: "GitHub" },
+    { icon: Linkedin, url: "https://www.linkedin.com/in/karollescalanteg/", label: "LinkedIn" }
   ];
 
   return (
@@ -45,9 +44,7 @@ const Footer = () => {
           </div>
 
           {/* Copyright */}
-          <div className="text-gray-600 text-sm">
-            &copy; 2024 CareerBoost. All rights reserved.
-          </div>
+          
         </div>
       </div>
     </footer>

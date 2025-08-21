@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -13,10 +13,24 @@ import {
   Star
 } from 'lucide-react';
 import { Button } from '../../../components/ui/button';
+import AuthModal from '../../../components/AuthModal';
+import { useUser } from '../../../context/userContext';
 
 const FinalCTA = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const { isAuthenticated } = useUser();
+
+  const handlePrimaryCTAClick = () => {
+    if (isAuthenticated) {
+      // If user is already authenticated, redirect to dashboard
+      navigate('/dashboard');
+    } else {
+      // If user is not authenticated, open the auth modal
+      setIsAuthModalOpen(true);
+    }
+  };
 
   const features = [
     { icon: Sparkles, text: t('landing.finalCTA.features.aiPowered') },
@@ -118,7 +132,7 @@ const FinalCTA = () => {
           >
             <Button
               size="lg"
-              onClick={() => navigate('/')}
+              onClick={handlePrimaryCTAClick}
               className="bg-white text-blue-900 hover:bg-blue-50 px-10 py-5 text-xl font-bold shadow-xl hover:shadow-2xl transition-all duration-300 group transform hover:-translate-y-1"
             >
               {t('landing.finalCTA.primaryButton')}
@@ -191,6 +205,12 @@ const FinalCTA = () => {
           </div>
         </div>
       </motion.div>
+      
+      {/* Auth Modal */}
+      <AuthModal 
+        isOpen={isAuthModalOpen} 
+        onClose={() => setIsAuthModalOpen(false)} 
+      />
     </section>
   );
 };

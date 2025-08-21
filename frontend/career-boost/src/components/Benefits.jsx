@@ -137,7 +137,7 @@ const Benefits = () => {
         </div>
 
         {/* ROI Calculator */}
-        <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-8 lg:p-12">
+        {/* <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-8 lg:p-12">
           <div className="text-center mb-8">
             <Badge className="bg-white/80 text-blue-700 border-blue-300 rounded-full py-1 mb-4">
               <TrendingUp className="h-4 w-4" />
@@ -177,7 +177,7 @@ const Benefits = () => {
               Calculate Your Potential <ArrowUpRight className="w-5 h-5 ml-1" />
             </Button>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

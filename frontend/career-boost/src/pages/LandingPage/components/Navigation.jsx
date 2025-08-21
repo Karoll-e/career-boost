@@ -4,11 +4,26 @@ import { useNavigate } from 'react-router-dom';
 import { Menu, X, Zap } from 'lucide-react';
 import { Button } from '../../../components/ui/button';
 import LanguageSwitcher from '../../../components/LanguageSwitcher';
+import AuthModal from '../../../components/AuthModal';
+import { useUser } from '../../../context/userContext';
 
 const Navigation = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const { isAuthenticated } = useUser();
+
+  const handleAuthButtonClick = () => {
+    if (isAuthenticated) {
+      // If user is already authenticated, redirect to dashboard
+      navigate('/dashboard');
+    } else {
+      // If user is not authenticated, open the auth modal
+      setIsAuthModalOpen(true);
+      setIsMobileMenuOpen(false); // Close mobile menu when opening modal
+    }
+  };
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
@@ -58,13 +73,13 @@ const Navigation = () => {
             <LanguageSwitcher variant="ghost" size="sm" />
             <Button 
               variant="ghost" 
-              onClick={() => navigate('/')}
+              onClick={handleAuthButtonClick}
               className="text-gray-600 hover:text-gray-900"
             >
               {t('common.login')}
             </Button>
             <Button 
-              onClick={() => navigate('/')}
+              onClick={handleAuthButtonClick}
               className="bg-blue-600 hover:bg-blue-700 text-white"
             >
               {t('landing.nav.getStarted')}
@@ -100,13 +115,13 @@ const Navigation = () => {
                 <Button 
                   variant="outline" 
                   className="w-full"
-                  onClick={() => navigate('/')}
+                  onClick={handleAuthButtonClick}
                 >
                   {t('common.login')}
                 </Button>
                 <Button 
                   className="w-full bg-blue-600 hover:bg-blue-700 text-white"
-                  onClick={() => navigate('/')}
+                  onClick={handleAuthButtonClick}
                 >
                   {t('landing.nav.getStarted')}
                 </Button>
@@ -115,6 +130,12 @@ const Navigation = () => {
           </div>
         )}
       </div>
+      
+      {/* Auth Modal */}
+      <AuthModal 
+        isOpen={isAuthModalOpen} 
+        onClose={() => setIsAuthModalOpen(false)} 
+      />
     </nav>
   );
 };
