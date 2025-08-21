@@ -5,13 +5,13 @@ import UserProvider from "./context/userContext";
 import LanguageProvider from "./context/LanguageContext";
 import "./i18n/i18n"; // Initialize i18n
 import LandingPage from "./pages/LandingPage";
+
 // import Dashboard from "./pages/Home/Dashboard";
 import Dashboard from "./pages/Dashboard";
 import CreateInterviewSession from "./pages/CreateInterviewSession";
 import EditInterviewSession from "./pages/EditInterviewSession";
 import InterviewSessions from "./pages/InterviewSessions";
 import InterviewPrep from "./pages/InterviewPrep/InterviewPrep";
-import Profile from "./pages/Profile/Profile";
 import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -62,14 +62,6 @@ const App = () => {
               element={
                 <ProtectedRoute>
                   <InterviewPrep />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/profile"
-              element={
-                <ProtectedRoute>
-                  <Profile />
                 </ProtectedRoute>
               }
             />
