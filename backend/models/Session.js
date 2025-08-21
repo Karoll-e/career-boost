@@ -10,4 +10,13 @@ const sessionSchema = new mongoose.Schema({
   lastAccessedAt: { type: Date, default: Date.now },
 }, { timestamps: true });
 
+// Update session progress metadata
+// Currently we track lastAccessedAt as a proxy for activity
+sessionSchema.methods.updateProgress = async function updateProgress() {
+  this.lastAccessedAt = new Date();
+  // Avoid validation and hooks for a lightweight metadata update
+  await this.save({ validateBeforeSave: false });
+  return this;
+};
+
 module.exports = mongoose.model("Session", sessionSchema);
