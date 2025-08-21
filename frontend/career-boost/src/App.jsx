@@ -14,8 +14,17 @@ import InterviewSessions from "./pages/InterviewSessions";
 import InterviewPrep from "./pages/InterviewPrep/InterviewPrep";
 import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
+// import { useEffect } from "react";
+import testApi from "./testApi";
 
 const App = () => {
+  // useEffect(() => {
+  //   fetch("https://career-boost.onrender.com/api/ping")
+  //     .then(res => res.json())
+  //     .then(data => console.log("Respuesta del backend:", data))
+  //     .catch(err => console.error("Error conectando:", err));
+  // }, []);
+
   return (
     <UserProvider>
       <LanguageProvider>
