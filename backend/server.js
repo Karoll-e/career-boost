@@ -27,7 +27,8 @@ const corsOptions = {
     const allowedOrigins = [
       process.env.FRONTEND_URL,
       'https://career-boost-frontend.vercel.app',
-      'https://career-boost.vercel.app'
+      'https://career-boost.vercel.app',
+      'https://career-boost-frontend-mrr8njgt0-karolls-projects.vercel.app',
     ].filter(Boolean); // Remove undefined values
     
     if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
