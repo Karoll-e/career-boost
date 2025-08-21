@@ -247,6 +247,7 @@ const UserProvider = ({ children }) => {
     register,
     logout,
     updateUser,
+    setUser,
     clearUser,
     refreshUser,
     

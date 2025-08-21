@@ -9,10 +9,10 @@ import LogoIcon from "../assets/Logo";
 import { useBodyScrollLock } from "../hooks/useBodyScrollLock";
 import { useContext } from "react";
 import { UserContext } from "../context/userContext";
-import ProfileInfoCard from "./Cards/ProfileInfoCard";
+import { NavUser } from "./ui/nav-user";
 
 const Navbar = () => {
-  const { user } = useContext(UserContext);
+  const { user, logout } = useContext(UserContext);
   const navigate = useNavigate();
 
   const [authModal, setAuthModal] = useState({
@@ -26,6 +26,11 @@ const Navbar = () => {
     } else {
       navigate("/dashboard");
     }
+  };
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
   };
 
   useBodyScrollLock(authModal.isOpen);
@@ -44,7 +49,7 @@ const Navbar = () => {
           </Button>
           
           {user ? (
-            <ProfileInfoCard/>
+            <NavUser user={user} onLogout={handleLogout} />
           ) : (
             <>
               <Button

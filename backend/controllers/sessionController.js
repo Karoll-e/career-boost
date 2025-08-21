@@ -31,6 +31,9 @@ exports.createSession = async (req, res) => {
 
     session.questions = questionDocs;
     await session.save();
+    
+    // Update initial progress
+    await session.updateProgress();
 
     res.status(201).json({ success: true, session });
   } catch (error) {
@@ -46,7 +49,13 @@ exports.getMySessions = async (req, res) => {
     const sessions = await Session.find({ user: req.user.id })
       .sort({ createdAt: -1 })
       .populate("questions");
-    res.status(200).json(sessions);
+    
+    // Update progress for each session
+    for (const session of sessions) {
+      await session.updateProgress();
+    }
+    
+    res.status(200).json({ success: true, sessions });
   } catch (error) {
     res.status(500).json({ success: false, message: "Server Error" });
   }
@@ -72,6 +81,62 @@ exports.getSessionById = async (req, res) => {
 
     res.status(200).json({ success: true, session });
   } catch (error) {
+    res.status(500).json({ success: false, message: "Server Error" });
+  }
+};
+
+// @desc    Update a session
+// @route   PUT /api/sessions/:id
+// @access  Private
+exports.updateSession = async (req, res) => {
+  try {
+    const { role, experience, topicsToFocus, description, questions } = req.body;
+    
+    const session = await Session.findById(req.params.id);
+
+    if (!session) {
+      return res.status(404).json({ message: "Session not found" });
+    }
+
+    // Check if the logged-in user owns this session
+    if (session.user.toString() !== req.user.id) {
+      return res
+        .status(401)
+        .json({ message: "Not authorized to update this session" });
+    }
+
+    // Update session fields
+    session.role = role || session.role;
+    session.experience = experience || session.experience;
+    session.topicsToFocus = topicsToFocus || session.topicsToFocus;
+    session.description = description !== undefined ? description : session.description;
+
+    // If new questions are provided, replace all existing questions
+    if (questions && questions.length > 0) {
+      // Delete all existing questions for this session
+      await Question.deleteMany({ session: session._id });
+
+      // Create new questions
+      const questionDocs = await Promise.all(
+        questions.map(async (q) => {
+          const question = await Question.create({
+            session: session._id,
+            question: q.question,
+            answer: q.answer,
+          });
+          return question._id;
+        })
+      );
+
+      // Update session with new question IDs
+      session.questions = questionDocs;
+    }
+
+    await session.save();
+
+    res.status(200).json({ success: true, session });
+  } catch (error) {
+    console.error("Error updating session:", error);
     res.status(500).json({ success: false, message: "Server Error" });
   }
 };

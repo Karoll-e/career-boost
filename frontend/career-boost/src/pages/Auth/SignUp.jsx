@@ -3,21 +3,17 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import Input from "@/components/Inputs/Input";
-import ProfilePhotoSelector from "../../components/Inputs/ProfilePhotoSelector";
 import { validateEmail } from "../../utils/helper";
-import { useUser } from "../../context/userContext"; 
-import uploadImage from "../../utils/uploadImage";
+import { useUser } from "../../context/userContext";
 
 const SignUp = ({ onSwitchToLogin }) => {
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
     password: "",
-    profilePic: null,
   });
   const [error, setError] = useState(null);
   const [fieldErrors, setFieldErrors] = useState({});
-  const [isUploading, setIsUploading] = useState(false);
 
   const navigate = useNavigate();
   
@@ -74,12 +70,6 @@ const SignUp = ({ onSwitchToLogin }) => {
     if (error) setError(null);
   }, [fieldErrors, error, validateField]);
 
-  // Handle profile picture change
-  const handleProfilePicChange = useCallback((image) => {
-    setFormData(prev => ({ ...prev, profilePic: image }));
-    // Clear general error when user makes changes
-    if (error) setError(null);
-  }, [error]);
 
   // Validate entire form
   const validateForm = useCallback(() => {
@@ -103,32 +93,13 @@ const SignUp = ({ onSwitchToLogin }) => {
     }
 
     setError(null);
-    setIsUploading(true);
 
     try {
-      let profileImageUrl = "";
-
-      // Upload image if present
-      if (formData.profilePic) {
-        try {
-          const imgUploadRes = await uploadImage(formData.profilePic);
-          profileImageUrl = imgUploadRes.imageUrl || "";
-        } catch (uploadError) {
-          console.error("Image upload error:", uploadError);
-          setError("Failed to upload profile image. Please try again.");
-          setIsUploading(false);
-          return;
-        }
-      }
-
-      setIsUploading(false);
-
       // Use the register function from UserContext
       await register({
         name: formData.fullName.trim(),
         email: formData.email.toLowerCase().trim(),
         password: formData.password,
-        profileImageUrl,
       });
 
       // Navigate to dashboard on successful registration
@@ -136,7 +107,6 @@ const SignUp = ({ onSwitchToLogin }) => {
       
     } catch (error) {
       console.error("Registration error:", error);
-      setIsUploading(false);
       
       // Handle specific error cases
       if (error.response?.status === 409) {
@@ -153,13 +123,12 @@ const SignUp = ({ onSwitchToLogin }) => {
 
   // Handle keyboard navigation
   const handleKeyDown = useCallback((e) => {
-    if (e.key === "Enter" && !isLoading && !isUploading) {
+    if (e.key === "Enter" && !isLoading) {
       handleSignUp(e);
     }
-  }, [isLoading, isUploading]);
+  }, [isLoading]);
 
   const isSubmitDisabled = isLoading || 
-    isUploading || 
     Object.keys(fieldErrors).some(key => fieldErrors[key]);
 
   return (
@@ -172,14 +141,6 @@ const SignUp = ({ onSwitchToLogin }) => {
       </div>
 
       <form onSubmit={handleSignUp} noValidate>
-        <div className="mb-4">
-          <ProfilePhotoSelector 
-            image={formData.profilePic} 
-            setImage={handleProfilePicChange}
-            disabled={isLoading || isUploading}
-          />
-        </div>
-
         <div className="space-y-4">
           <div>
             <Input
@@ -188,7 +149,7 @@ const SignUp = ({ onSwitchToLogin }) => {
               label="Full Name"
               placeholder="Enter your full name"
               type="text"
-              disabled={isLoading || isUploading}
+              disabled={isLoading}
               autoComplete="name"
               aria-invalid={!!fieldErrors.fullName}
               aria-describedby={fieldErrors.fullName ? "name-error" : undefined}
@@ -207,7 +168,7 @@ const SignUp = ({ onSwitchToLogin }) => {
               label="Email Address"
               placeholder="Enter your email"
               type="email"
-              disabled={isLoading || isUploading}
+              disabled={isLoading}
               autoComplete="email"
               aria-invalid={!!fieldErrors.email}
               aria-describedby={fieldErrors.email ? "email-error" : undefined}
@@ -226,7 +187,7 @@ const SignUp = ({ onSwitchToLogin }) => {
               label="Password"
               placeholder="Create a password (min 8 characters)"
               type="password"
-              disabled={isLoading || isUploading}
+              disabled={isLoading}
               autoComplete="new-password"
               onKeyDown={handleKeyDown}
               aria-invalid={!!fieldErrors.password}
@@ -253,12 +214,7 @@ const SignUp = ({ onSwitchToLogin }) => {
             className="w-full" 
             disabled={isSubmitDisabled}
           >
-            {isUploading ? (
-              <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Uploading image...
-              </>
-            ) : isLoading ? (
+            {isLoading ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                 Creating account...
@@ -276,7 +232,7 @@ const SignUp = ({ onSwitchToLogin }) => {
               type="button"
               onClick={onSwitchToLogin}
               className="font-medium text-primary hover:text-primary/80 underline cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded"
-              disabled={isLoading || isUploading}
+              disabled={isLoading}
             >
               Sign in
             </button>

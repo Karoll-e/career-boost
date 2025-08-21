@@ -26,7 +26,7 @@ const questionAnswerPrompt = (
     `;
 
 const conceptExplainPrompt = (question) => `
-    You are an AI trained to generate explanations for a given interview question.
+    You are an AI trained to generate comprehensive explanations for interview questions.
     
     Task:
     
@@ -34,15 +34,32 @@ const conceptExplainPrompt = (question) => `
     - Question: "${question}"
     - After the explanation, provide a short and clear title that summarizes the concept for the article or page header.
     - If the explanation includes a code example, provide a small code block.
+    - At the end, include relevant sources and external learning materials where users can learn more about the topic.
+    - Include 3-5 high-quality, relevant sources like official documentation, reputable tutorials, or educational platforms.
     - Keep the formatting very clean and clear.
     - Return the result as a valid JSON object in the following format:
     
     {
-        "title": "Short title here?",
-        "explanation": "Explanation here."
+        "title": "Short title here",
+        "explanation": "Detailed explanation here with markdown formatting.",
+        "sources": [
+            {
+                "title": "Official Documentation",
+                "url": "https://example.com/docs",
+                "description": "Brief description of what this resource provides"
+            },
+            {
+                "title": "Tutorial/Guide Title",
+                "url": "https://example.com/tutorial", 
+                "description": "Brief description of what this resource provides"
+            }
+        ]
     }
     
-    Important: Do NOT add any extra text outside the JSON format. Only return valid JSON.
+    Important: 
+    - Do NOT add any extra text outside the JSON format. Only return valid JSON.
+    - Ensure all URLs are real, working links to reputable sources.
+    - Include a mix of documentation, tutorials, and educational content.
     `;
 
 module.exports = { questionAnswerPrompt, conceptExplainPrompt };

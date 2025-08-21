@@ -3,6 +3,7 @@ import { AppSidebar } from "./AppSidebar";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { SIDEBAR_ITEMS } from "../../utils/data";
 import { useLocation } from "react-router-dom";
+import LanguageSwitcher from "../LanguageSwitcher";
 
 
 
@@ -16,12 +17,17 @@ const DashboardLayout = ({ children }) => {
     <SidebarProvider>
       <div className="flex gap-4"> {/* or gap-x-4 for horizontal space */}
         <AppSidebar />
-        <main className="flex-1 p-4">
-        <div className="flex items-center gap-4 mb-4">
-            <SidebarTrigger />
-            <h2 className="text-lg font-semibold text-gray-800">
-              {getCurrentSectionName()}
-            </h2>
+        <main className="flex-1 px-4 sm:px-6 md:px-8 lg:px-16 py-4">
+        <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-4">
+              <SidebarTrigger />
+              <h2 className="text-lg font-semibold text-gray-800">
+                {getCurrentSectionName()}
+              </h2>
+            </div>
+            <div className="flex items-center gap-2">
+              <LanguageSwitcher showLabel={true} />
+            </div>
           </div>
           
           {children}

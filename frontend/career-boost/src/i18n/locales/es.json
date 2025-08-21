@@ -1,0 +1,445 @@
+{
+  "common": {
+    "loading": "Cargando...",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "create": "Crear",
+    "update": "Actualizar",
+    "back": "Atrás",
+    "continue": "Continuar",
+    "close": "Cerrar",
+    "success": "Éxito",
+    "error": "Error",
+    "warning": "Advertencia",
+    "info": "Información",
+    "yes": "Sí",
+    "no": "No",
+    "submit": "Enviar",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "clear": "Limpiar",
+    "select": "Seleccionar",
+    "upload": "Subir",
+    "download": "Descargar",
+    "view": "Ver",
+    "share": "Compartir",
+    "copy": "Copiar",
+    "paste": "Pegar",
+    "cut": "Cortar",
+    "undo": "Deshacer",
+    "redo": "Rehacer",
+    "refresh": "Actualizar",
+    "logout": "Cerrar sesión",
+    "login": "Iniciar sesión",
+    "register": "Registrarse",
+    "welcome": "Bienvenido",
+    "language": "Idioma"
+  },
+  "navigation": {
+    "dashboard": "Panel",
+    "sessions": "Sesiones",
+    "account": "Cuenta",
+    "settings": "Configuración",
+    "help": "Ayuda",
+    "about": "Acerca de"
+  },
+  "dashboard": {
+    "title": "Panel de Control",
+    "welcomeMessage": "¡Bienvenido de nuevo, {{name}}! 👋",
+    "welcomeSubtitle": "¿Listo para dominar tu próxima entrevista con práctica potenciada por IA?",
+    "quickStart": "Inicio Rápido",
+    "quickStartDescription": "Salta directo a la preparación de entrevistas",
+    "startNewSession": "Iniciar Nueva Sesión de Entrevista",
+    "viewAllSessions": "Ver Todas las Sesiones",
+    "recentSessions": "Sesiones Recientes",
+    "recentSessionsDescription": "Tus últimas sesiones de práctica de entrevistas",
+    "noSessions": "Aún no tienes sesiones. ¡Crea tu primera sesión de entrevista para empezar!",
+    "createFirstSession": "Crear Tu Primera Sesión",
+    "aiFeatures": "Características Potenciadas por IA",
+    "aiFeaturesDescription": "Descubre cómo la IA mejora tu preparación para entrevistas",
+    "gettingStarted": "Guía de Inicio",
+    "gettingStartedDescription": "¿Nuevo en la preparación de entrevistas? Sigue estos pasos para aprovechar al máximo CareerBoost",
+    "stats": {
+      "sessionsCreated": "Sesiones Creadas"
+    },
+    "features": {
+      "aiQuestions": {
+        "title": "Preguntas Generadas por IA",
+        "description": "Obtén preguntas personalizadas basadas en tu rol y nivel de experiencia"
+      },
+      "smartFeedback": {
+        "title": "Retroalimentación Inteligente",
+        "description": "Recibe comentarios detallados y sugerencias de mejora después de cada sesión"
+      },
+      "instantExplanations": {
+        "title": "Explicaciones Instantáneas",
+        "description": "Obtén explicaciones de IA para conceptos complejos y preguntas técnicas"
+      }
+    },
+    "steps": {
+      "createSession": {
+        "title": "Crea Tu Primera Sesión",
+        "description": "Comienza creando una sesión de preparación para entrevistas para tu rol objetivo",
+        "action": "Empezar"
+      },
+      "practiceAI": {
+        "title": "Practica con IA",
+        "description": "Responde preguntas generadas por IA y recibe retroalimentación en tiempo real",
+        "action": "Saber Más"
+      },
+      "practiceRegularly": {
+        "title": "Practica Regularmente",
+        "description": "Sigue practicando con diferentes sesiones para mejorar tus habilidades de entrevista",
+        "action": "Ver Sesiones"
+      }
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Iniciar Sesión",
+      "subtitle": "¡Bienvenido de nuevo! Por favor inicia sesión en tu cuenta",
+      "email": "Email",
+      "password": "Contraseña",
+      "signIn": "Iniciar Sesión",
+      "noAccount": "¿No tienes una cuenta?",
+      "createAccount": "Crea una aquí",
+      "forgotPassword": "¿Olvidaste tu contraseña?"
+    },
+    "register": {
+      "title": "Crear Cuenta",
+      "subtitle": "Únete a CareerBoost y comienza tu camino de preparación para entrevistas",
+      "name": "Nombre Completo",
+      "email": "Email",
+      "password": "Contraseña",
+      "confirmPassword": "Confirmar Contraseña",
+      "createAccount": "Crear Cuenta",
+      "hasAccount": "¿Ya tienes una cuenta?",
+      "signIn": "Inicia sesión aquí"
+    },
+    "messages": {
+      "loginSuccess": "¡Inicio de sesión exitoso!",
+      "registerSuccess": "¡Cuenta creada exitosamente!",
+      "loginError": "Error al iniciar sesión. Por favor verifica tus credenciales.",
+      "registerError": "Error en el registro. Por favor intenta de nuevo.",
+      "emailRequired": "El email es requerido",
+      "passwordRequired": "La contraseña es requerida",
+      "nameRequired": "El nombre es requerido",
+      "emailInvalid": "Por favor ingresa una dirección de email válida",
+      "passwordMismatch": "Las contraseñas no coinciden",
+      "passwordTooShort": "La contraseña debe tener al menos 6 caracteres"
+    }
+  },
+  "sessions": {
+    "title": "Sesiones de Preparación para Entrevistas",
+    "subtitle": "Practica con entrevistas simuladas potenciadas por IA adaptadas a tu puesto objetivo",
+    "create": "Crear Nueva Sesión",
+    "createNew": "Crear Nueva Sesión",
+    "createYourFirst": "Crear Tu Primera Sesión",
+    "edit": "Editar Sesión",
+    "delete": "Eliminar Sesión",
+    "role": "Puesto",
+    "experience": "experiencia",
+    "topics": "Temas a Enfocar",
+    "questions": "preguntas",
+    "status": "Estado",
+    "created": "Creado",
+    "lastAccessed": "Último Acceso",
+    "noSessions": "Aún no hay sesiones",
+    "createFirst": "Crea tu primera sesión de práctica para entrevistas para empezar",
+    "startPractice": "Empezar Práctica",
+    "deleteModal": {
+      "title": "Eliminar Sesión de Entrevista",
+      "message": "¿Estás seguro de que quieres eliminar la sesión \"{{role}}\"? Esta acción NO se puede deshacer.",
+      "confirm": "Eliminar Sesión"
+    },
+    "messages": {
+      "deleteSuccess": "Sesión Eliminada Exitosamente",
+      "deleteError": "Error al eliminar la sesión"
+    }
+  },
+  "interview": {
+    "title": "Preguntas y Respuestas de Entrevista",
+    "loadMore": "Cargar Más",
+    "pin": "Anclar esta pregunta para fácil acceso",
+    "unpin": "Desanclar esta pregunta",
+    "learnMore": "Saber Más",
+    "viewDetails": "Ver Detalles",
+    "regenerateExplanation": "Regenerar Explicación",
+    "sources": "Saber Más",
+    "experience": "Experiencia",
+    "years": "Años",
+    "year": "Año",
+    "focusAreas": "Áreas de Enfoque",
+    "messages": {
+      "explanationError": "Error al generar explicación, intenta de nuevo más tarde"
+    }
+  },
+  "errors": {
+    "generic": "Algo salió mal. Por favor intenta de nuevo.",
+    "networkError": "Error de red. Por favor verifica tu conexión.",
+    "unauthorized": "No estás autorizado para realizar esta acción.",
+    "notFound": "El recurso solicitado no fue encontrado.",
+    "validation": "Por favor verifica el formulario en busca de errores.",
+    "serverError": "Error del servidor. Por favor intenta más tarde.",
+    "sessionLoadError": "Error al cargar las sesiones"
+  },
+  "landing": {
+    "nav": {
+      "features": "Características",
+      "howItWorks": "Cómo Funciona",
+      "technology": "Tecnología",
+      "benefits": "Beneficios",
+      "getStarted": "Comenzar"
+    },
+    "hero": {
+      "trustBadge": "Confiado por más de 10,000 desarrolladores en todo el mundo",
+      "headline": {
+        "part1": "Domina Tu Próxima Entrevista con",
+        "highlight": "IA Avanzada",
+        "part2": "y Práctica"
+      },
+      "subheadline": "Prepárate para entrevistas técnicas y de comportamiento con preguntas personalizadas generadas por IA, retroalimentación instantánea y explicaciones expertas adaptadas a tu rol y nivel de experiencia.",
+      "primaryCTA": "Comenzar Práctica Gratis",
+      "secondaryCTA": "Ver Demo",
+      "noCreditCard": "No se requiere tarjeta de crédito",
+      "startIn30Seconds": "Comienza en 30 segundos"
+    },
+    "problem": {
+      "badge": "El Desafío",
+      "title": "La Preparación Tradicional para Entrevistas se Queda Corta",
+      "timeConsuming": "Pasar horas buscando preguntas relevantes en línea",
+      "generic": "Preguntas genéricas que no coinciden con tu rol específico",
+      "noFeedback": "Sin retroalimentación personalizada para mejorar tus respuestas"
+    },
+    "solution": {
+      "badge": "Nuestra Solución",
+      "title": "Preparación para Entrevistas Potenciada por IA",
+      "ai": {
+        "title": "Generación Inteligente por IA",
+        "description": "Obtén preguntas adaptadas a tu rol, experiencia y áreas de enfoque"
+      },
+      "personalized": {
+        "title": "Contenido Personalizado",
+        "description": "Preguntas específicas del rol que coinciden con escenarios reales de entrevistas"
+      },
+      "explanations": {
+        "title": "Explicaciones Expertas",
+        "description": "Aprende de explicaciones detalladas y consejos de mejora"
+      },
+      "resultTitle": "El Resultado",
+      "resultDescription": "Mejor preparación, mayor confianza y tasas de éxito más altas"
+    },
+    "features": {
+      "badge": "Características Clave",
+      "title": "Todo lo que Necesitas para Tener Éxito",
+      "subtitle": "Herramientas integrales y características potenciadas por IA para ayudarte a sobresalir en cualquier entrevista",
+      "aiGeneration": {
+        "title": "Generación de Preguntas por IA",
+        "description": "Obtén preguntas de entrevista ilimitadas y personalizadas generadas por IA avanzada basadas en tu rol objetivo y nivel de experiencia."
+      },
+      "roleSpecific": {
+        "title": "Contenido Específico del Rol",
+        "description": "Preguntas adaptadas a posiciones específicas - desde desarrollador junior hasta arquitecto senior, cada una con escenarios técnicos y de comportamiento relevantes."
+      },
+      "adaptive": {
+        "title": "Dificultad Adaptativa",
+        "description": "Las preguntas se ajustan automáticamente a tu nivel de experiencia y mejoran según tu rendimiento y áreas de enfoque."
+      },
+      "explanations": {
+        "title": "Explicaciones Detalladas",
+        "description": "Aprende de explicaciones completas, mejores prácticas y consejos expertos para cada pregunta que practiques."
+      },
+      "management": {
+        "title": "Gestión de Sesiones",
+        "description": "Organiza tus sesiones de práctica, rastrea el progreso y guarda preguntas importantes para revisión futura."
+      },
+      "interface": {
+        "title": "Interfaz Moderna",
+        "description": "Diseño limpio y responsivo que funciona perfectamente en todos los dispositivos - practica en cualquier lugar, en cualquier momento."
+      },
+      "cta": {
+        "title": "¿Listo para Subir de Nivel?",
+        "description": "Únete a miles de desarrolladores que ya han mejorado sus habilidades de entrevista con nuestra plataforma de IA.",
+        "button": "Comenzar a Practicar Ahora"
+      }
+    },
+    "howItWorks": {
+      "badge": "Proceso Simple",
+      "title": "Cómo Funciona",
+      "subtitle": "Comienza con la preparación para entrevistas potenciada por IA en solo tres simples pasos",
+      "step1": {
+        "title": "Configura Tu Perfil",
+        "description": "Cuéntanos sobre tu rol objetivo, nivel de experiencia y áreas en las que quieres enfocarte. Nuestra IA personalizará todo para ti."
+      },
+      "step2": {
+        "title": "IA Genera Preguntas",
+        "description": "Nuestra IA avanzada crea preguntas de entrevista ilimitadas y relevantes adaptadas específicamente a tu perfil y objetivos."
+      },
+      "step3": {
+        "title": "Practica y Aprende",
+        "description": "Responde preguntas, obtén explicaciones detalladas y rastrea tu progreso. Mejora continuamente con insights potenciados por IA."
+      },
+      "cta": {
+        "title": "¿Listo para Comenzar Tu Viaje?",
+        "description": "Únete a miles de candidatos exitosos que han mejorado sus habilidades de entrevista con nuestra plataforma.",
+        "button": "Comenzar Práctica Gratis"
+      }
+    },
+    "techStack": {
+      "badge": "Tecnología",
+      "title": "Potenciado por Tecnología de Vanguardia",
+      "subtitle": "Construido con herramientas modernas e IA para ofrecer la mejor experiencia de preparación para entrevistas",
+      "ai": {
+        "category": "IA y Aprendizaje Automático",
+        "gemini": "Modelo de lenguaje avanzado para generación natural de preguntas",
+        "nlp": "Procesamiento de lenguaje natural para creación inteligente de contenido",
+        "ml": "Algoritmos de aprendizaje automático para recomendaciones personalizadas"
+      },
+      "frontend": {
+        "category": "Frontend Moderno",
+        "react": "Arquitectura basada en componentes para experiencia de usuario fluida",
+        "tailwind": "Framework CSS utility-first para diseño responsivo",
+        "framer": "Animaciones suaves y microinteracciones"
+      },
+      "backend": {
+        "category": "Backend Robusto",
+        "node": "Runtime JavaScript de alto rendimiento para aplicaciones escalables",
+        "express": "Framework web rápido y minimalista para APIs robustas",
+        "mongodb": "Base de datos NoSQL flexible para gestión eficiente de datos"
+      },
+      "security": {
+        "category": "Seguridad Empresarial",
+        "jwt": "Sistema de autenticación segura basada en tokens",
+        "encryption": "Encriptación de datos de extremo a extremo y protección de privacidad",
+        "api": "Limitación de velocidad y medidas de seguridad integrales para APIs"
+      },
+      "performance": {
+        "title": "Rendimiento y Confiabilidad",
+        "subtitle": "Construido para escalar con infraestructura de grado empresarial",
+        "uptime": "Tiempo de Actividad",
+        "response": "Tiempo de Respuesta",
+        "support": "Soporte"
+      },
+      "architecture": {
+        "title": "Arquitectura del Sistema"
+      }
+    },
+    "benefits": {
+      "badge": "Resultados Comprobados",
+      "title": "Transforma Tu Rendimiento en Entrevistas",
+      "subtitle": "Únete a miles de desarrolladores que han mejorado exitosamente sus habilidades de entrevista y conseguido sus trabajos soñados",
+      "improved": {
+        "title": "Rendimiento Mejorado",
+        "description": "Los usuarios reportan un rendimiento significativamente mejor en entrevistas y mayor confianza después de usar nuestra plataforma.",
+        "stat": "tasa de mejora"
+      },
+      "time": {
+        "title": "Eficiencia de Tiempo",
+        "description": "Ahorra horas de tiempo de preparación con preguntas relevantes generadas por IA adaptadas a tus necesidades específicas.",
+        "stat": "tiempo ahorrado"
+      },
+      "confidence": {
+        "title": "Mayor Confianza",
+        "description": "Siéntete más preparado y confiado en las entrevistas con práctica integral y retroalimentación experta.",
+        "stat": "aumento de confianza"
+      },
+      "successTitle": "Historias de Éxito",
+      "successSubtitle": "Comentarios reales de desarrolladores que han transformado sus carreras",
+      "testimonial1": "Career-Boost me ayudó a prepararme para mi entrevista de desarrollador senior en Google. Las preguntas generadas por IA fueron increíblemente realistas y me ayudaron a identificar brechas de conocimiento.",
+      "testimonial2": "Pude conseguir mi rol soñado de gerente de producto gracias a la práctica integral de entrevistas. Las explicaciones fueron particularmente útiles.",
+      "testimonial3": "El enfoque personalizado de la plataforma marcó toda la diferencia. Me sentí confiado y bien preparado para cada pregunta técnica.",
+      "roi": {
+        "badge": "Retorno de Inversión",
+        "title": "Calcula tu ROI Profesional",
+        "subtitle": "Ve cómo la preparación para entrevistas se traduce en avance profesional y crecimiento salarial",
+        "prep": "Costo de preparación tradicional",
+        "salary": "Aumento salarial promedio",
+        "time": "Tiempo de preparación",
+        "return": "Potencial ROI",
+        "conclusion": "Invertir en una preparación adecuada para entrevistas paga dividendos a lo largo de tu carrera",
+        "cta": "Calcula Tu Potencial"
+      }
+    },
+    "finalCTA": {
+      "badge": "Únete Ahora",
+      "title": {
+        "part1": "¿Listo para",
+        "highlight": "Transformar",
+        "part2": "Tu Carrera?"
+      },
+      "subtitle": "Únete a miles de desarrolladores que ya han mejorado sus habilidades de entrevista y conseguido mejores posiciones. Comienza tu viaje hoy.",
+      "features": {
+        "aiPowered": "Preguntas por IA",
+        "quickSetup": "Configuración en 30 Segundos",
+        "secure": "Seguro y Privado",
+        "community": "Comunidad Activa"
+      },
+      "stats": {
+        "users": "Usuarios Activos",
+        "questions": "Preguntas Generadas",
+        "success": "Tasa de Éxito",
+        "rating": "Calificación de Usuario"
+      },
+      "primaryButton": "Comenzar Práctica Gratis",
+      "secondaryButton": "Agendar Demo",
+      "trust": {
+        "secure": "Seguridad bancaria",
+        "noCommitment": "Sin compromiso requerido",
+        "quickStart": "Comienza en 30 segundos"
+      },
+      "urgency": {
+        "badge": "Tiempo Limitado",
+        "title": "No Pierdas Tu Próxima Oportunidad",
+        "description": "El trabajo de tus sueños podría estar a una entrevista de distancia. Comienza a prepararte ahora y date la ventaja competitiva que necesitas.",
+        "offer": "Gratis para siempre para usuarios tempranos"
+      }
+    },
+    "footer": {
+      "description": "Career-Boost ayuda a desarrolladores y profesionales a sobresalir en entrevistas técnicas con preguntas de práctica potenciadas por IA, retroalimentación personalizada y herramientas de preparación integrales.",
+      "newsletter": {
+        "title": "Mantente Actualizado",
+        "description": "Recibe los últimos consejos de entrevistas e insights profesionales en tu bandeja de entrada.",
+        "placeholder": "Ingresa tu email"
+      },
+      "product": {
+        "title": "Producto"
+      },
+      "company": {
+        "title": "Empresa"
+      },
+      "support": {
+        "title": "Soporte"
+      },
+      "legal": {
+        "title": "Legal"
+      },
+      "contact": {
+        "address": {
+          "title": "Dirección",
+          "street": "123 Tech Street, Suite 100",
+          "city": "San Francisco, CA 94107"
+        },
+        "phone": {
+          "title": "Teléfono",
+          "number": "+1 (555) 123-4567",
+          "hours": "Lun-Vie 9AM-6PM PST"
+        },
+        "email": {
+          "title": "Email",
+          "address": "support@career-boost.com",
+          "response": "Tiempo de respuesta 24 horas"
+        }
+      },
+      "copyright": "Todos los derechos reservados.",
+      "madeWith": "Hecho con",
+      "forDevelopers": "para desarrolladores",
+      "badges": {
+        "secure": "SSL Seguro",
+        "certified": "Certificado IA",
+        "community": "Comunidad 10K+"
+      }
+    }
+  }
+}

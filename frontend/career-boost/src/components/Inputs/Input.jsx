@@ -11,25 +11,24 @@ const Input = ({ value, onChange, label, placeholder, type }) => {
     <div>
       <label
         htmlFor="email"
-        className="block text-sm font-medium text-gray-700 mb-1"
+        className="block text-sm font-medium text-gray-700"
       >
         {label}
       </label>
 
-      <div className="input-box">
+      <div className="input-box relative">
         <input
           htmlFor="password"
           type={
             type == "password" ? (showPassword ? "text" : "password") : type
           }
           placeholder={placeholder}
-          className="w-full bg-transparent outline-none"
+          className="w-full bg-gray-100 outline-none rounded-lg p-3 pr-12" // Added pr-12 for right padding
           value={value}
           onChange={(e) => onChange(e)}
         />
-
         {type === "password" && (
-          <>
+          <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
             {showPassword ? (
               <Eye
                 size={22}
@@ -43,7 +42,7 @@ const Input = ({ value, onChange, label, placeholder, type }) => {
                 onClick={() => toggleShowPassword()}
               />
             )}
-          </>
+          </div>
         )}
       </div>
     </div>

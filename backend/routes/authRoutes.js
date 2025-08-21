@@ -1,5 +1,5 @@
 const express = require("express");
-const { registerUser, loginUser, getUserProfile } = require("../controllers/authController");
+const { registerUser, loginUser, getUserProfile, updateUserProfile, uploadUserAvatar } = require("../controllers/authController");
 const { protect } = require("../middlewares/authMiddleware");
 const upload = require("../middlewares/uploadMiddleware");
 
@@ -10,6 +10,8 @@ console.log("upload.single:", typeof upload.single);
 router.post("/register", registerUser);   // Register User
 router.post("/login", loginUser);         // Login User
 router.get("/profile", protect, getUserProfile);  // Get User Profile
+router.put("/update-profile", protect, updateUserProfile);  // Update User Profile
+router.post("/upload-avatar", protect, upload.single("avatar"), uploadUserAvatar);  // Upload User Avatar
 
 router.post("/upload-image", upload.single("image"), (req, res) => {
   if (!req.file) {
