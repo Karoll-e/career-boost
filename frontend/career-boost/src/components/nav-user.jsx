@@ -1,5 +1,6 @@
 "use client"
 
+import { useNavigate } from "react-router-dom"
 import {
   BadgeCheck,
   Bell,
@@ -36,6 +37,7 @@ export function NavUser({
   onLogout
 }) {
   const { isMobile } = useSidebar()
+  const navigate = useNavigate()
 
   return (
     <SidebarMenu>
@@ -82,7 +84,7 @@ export function NavUser({
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={() => navigate('/profile')}>
                 <BadgeCheck />
                 Account
               </DropdownMenuItem>

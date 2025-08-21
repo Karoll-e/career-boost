@@ -31,6 +31,9 @@ exports.createSession = async (req, res) => {
 
     session.questions = questionDocs;
     await session.save();
+    
+    // Update initial progress
+    await session.updateProgress();
 
     res.status(201).json({ success: true, session });
   } catch (error) {
@@ -46,7 +49,13 @@ exports.getMySessions = async (req, res) => {
     const sessions = await Session.find({ user: req.user.id })
       .sort({ createdAt: -1 })
       .populate("questions");
-    res.status(200).json(sessions);
+    
+    // Update progress for each session
+    for (const session of sessions) {
+      await session.updateProgress();
+    }
+    
+    res.status(200).json({ success: true, sessions });
   } catch (error) {
     res.status(500).json({ success: false, message: "Server Error" });
   }

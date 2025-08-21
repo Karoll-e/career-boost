@@ -1,0 +1,234 @@
+{
+  "common": {
+    "loading": "Cargando...",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "create": "Crear",
+    "update": "Actualizar",
+    "back": "Atrás",
+    "continue": "Continuar",
+    "close": "Cerrar",
+    "success": "Éxito",
+    "error": "Error",
+    "warning": "Advertencia",
+    "info": "Información",
+    "yes": "Sí",
+    "no": "No",
+    "submit": "Enviar",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "clear": "Limpiar",
+    "select": "Seleccionar",
+    "upload": "Subir",
+    "download": "Descargar",
+    "view": "Ver",
+    "share": "Compartir",
+    "copy": "Copiar",
+    "paste": "Pegar",
+    "cut": "Cortar",
+    "undo": "Deshacer",
+    "redo": "Rehacer",
+    "refresh": "Actualizar",
+    "logout": "Cerrar sesión",
+    "login": "Iniciar sesión",
+    "register": "Registrarse",
+    "welcome": "Bienvenido",
+    "language": "Idioma"
+  },
+  "navigation": {
+    "dashboard": "Panel",
+    "sessions": "Sesiones",
+    "profile": "Perfil",
+    "account": "Cuenta",
+    "settings": "Configuración",
+    "help": "Ayuda",
+    "about": "Acerca de"
+  },
+  "dashboard": {
+    "title": "Panel de Control",
+    "welcomeMessage": "¡Bienvenido de nuevo, {{name}}! 👋",
+    "welcomeSubtitle": "¿Listo para dominar tu próxima entrevista con práctica potenciada por IA?",
+    "quickStart": "Inicio Rápido",
+    "quickStartDescription": "Salta directo a la preparación de entrevistas",
+    "startNewSession": "Iniciar Nueva Sesión de Entrevista",
+    "viewAllSessions": "Ver Todas las Sesiones",
+    "recentSessions": "Sesiones Recientes",
+    "recentSessionsDescription": "Tus últimas sesiones de práctica de entrevistas",
+    "noSessions": "Aún no tienes sesiones. ¡Crea tu primera sesión de entrevista para empezar!",
+    "createFirstSession": "Crear Tu Primera Sesión",
+    "aiFeatures": "Características Potenciadas por IA",
+    "aiFeaturesDescription": "Descubre cómo la IA mejora tu preparación para entrevistas",
+    "gettingStarted": "Guía de Inicio",
+    "gettingStartedDescription": "¿Nuevo en la preparación de entrevistas? Sigue estos pasos para aprovechar al máximo CareerBoost",
+    "stats": {
+      "sessionsCreated": "Sesiones Creadas"
+    },
+    "features": {
+      "aiQuestions": {
+        "title": "Preguntas Generadas por IA",
+        "description": "Obtén preguntas personalizadas basadas en tu rol y nivel de experiencia"
+      },
+      "smartFeedback": {
+        "title": "Retroalimentación Inteligente",
+        "description": "Recibe comentarios detallados y sugerencias de mejora después de cada sesión"
+      },
+      "instantExplanations": {
+        "title": "Explicaciones Instantáneas",
+        "description": "Obtén explicaciones de IA para conceptos complejos y preguntas técnicas"
+      }
+    },
+    "steps": {
+      "createSession": {
+        "title": "Crea Tu Primera Sesión",
+        "description": "Comienza creando una sesión de preparación para entrevistas para tu rol objetivo",
+        "action": "Empezar"
+      },
+      "practiceAI": {
+        "title": "Practica con IA",
+        "description": "Responde preguntas generadas por IA y recibe retroalimentación en tiempo real",
+        "action": "Saber Más"
+      },
+      "practiceRegularly": {
+        "title": "Practica Regularmente",
+        "description": "Sigue practicando con diferentes sesiones para mejorar tus habilidades de entrevista",
+        "action": "Ver Sesiones"
+      }
+    }
+  },
+  "profile": {
+    "title": "Configuración de Perfil",
+    "subtitle": "Gestiona tu información de cuenta y preferencias",
+    "personalInfo": "Información Personal",
+    "personalInfoDescription": "Actualiza tus datos personales y foto de perfil",
+    "profilePicture": "Foto de Perfil",
+    "profilePictureDescription": "Haz clic en el icono de la cámara para subir una nueva imagen",
+    "profilePictureFormat": "JPG, PNG o GIF. Tamaño máximo 5MB.",
+    "fullName": "Nombre Completo",
+    "emailAddress": "Dirección de Email",
+    "saveChanges": "Guardar Cambios",
+    "saving": "Guardando...",
+    "accountInfo": "Información de la Cuenta",
+    "accountInfoDescription": "Los detalles de tu cuenta y estado de membresía",
+    "accountCreated": "Cuenta Creada",
+    "lastUpdated": "Última Actualización",
+    "notAvailable": "No disponible",
+    "placeholders": {
+      "name": "Ingresa tu nombre completo",
+      "email": "Ingresa tu dirección de email"
+    },
+    "messages": {
+      "profileUpdated": "¡Perfil actualizado exitosamente!",
+      "pictureUploaded": "¡Foto de perfil subida exitosamente!",
+      "nameRequired": "El nombre es requerido",
+      "emailRequired": "El email es requerido",
+      "emailInvalid": "Por favor ingresa una dirección de email válida",
+      "uploadError": "Error al subir la imagen. Por favor intenta de nuevo.",
+      "updateError": "Error al actualizar el perfil. Por favor intenta de nuevo.",
+      "fileTypeError": "Por favor selecciona un archivo de imagen válido",
+      "fileSizeError": "El tamaño de la imagen debe ser menor a 5MB"
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Iniciar Sesión",
+      "subtitle": "¡Bienvenido de nuevo! Por favor inicia sesión en tu cuenta",
+      "email": "Email",
+      "password": "Contraseña",
+      "signIn": "Iniciar Sesión",
+      "noAccount": "¿No tienes una cuenta?",
+      "createAccount": "Crea una aquí",
+      "forgotPassword": "¿Olvidaste tu contraseña?"
+    },
+    "register": {
+      "title": "Crear Cuenta",
+      "subtitle": "Únete a CareerBoost y comienza tu camino de preparación para entrevistas",
+      "name": "Nombre Completo",
+      "email": "Email",
+      "password": "Contraseña",
+      "confirmPassword": "Confirmar Contraseña",
+      "createAccount": "Crear Cuenta",
+      "hasAccount": "¿Ya tienes una cuenta?",
+      "signIn": "Inicia sesión aquí"
+    },
+    "messages": {
+      "loginSuccess": "¡Inicio de sesión exitoso!",
+      "registerSuccess": "¡Cuenta creada exitosamente!",
+      "loginError": "Error al iniciar sesión. Por favor verifica tus credenciales.",
+      "registerError": "Error en el registro. Por favor intenta de nuevo.",
+      "emailRequired": "El email es requerido",
+      "passwordRequired": "La contraseña es requerida",
+      "nameRequired": "El nombre es requerido",
+      "emailInvalid": "Por favor ingresa una dirección de email válida",
+      "passwordMismatch": "Las contraseñas no coinciden",
+      "passwordTooShort": "La contraseña debe tener al menos 6 caracteres"
+    }
+  },
+  "sessions": {
+    "title": "Sesiones de Preparación para Entrevistas",
+    "subtitle": "Practica con entrevistas simuladas potenciadas por IA adaptadas a tu puesto objetivo",
+    "create": "Crear Nueva Sesión",
+    "createNew": "Crear Nueva Sesión",
+    "createYourFirst": "Crear Tu Primera Sesión",
+    "edit": "Editar Sesión",
+    "delete": "Eliminar Sesión",
+    "role": "Puesto",
+    "experience": "experiencia",
+    "topics": "Temas a Enfocar",
+    "questions": "preguntas",
+    "status": "Estado",
+    "created": "Creado",
+    "lastAccessed": "Último Acceso",
+    "noSessions": "Aún no hay sesiones",
+    "createFirst": "Crea tu primera sesión de práctica para entrevistas para empezar",
+    "startPractice": "Empezar Práctica",
+    "deleteModal": {
+      "title": "Eliminar Sesión de Entrevista",
+      "message": "¿Estás seguro de que quieres eliminar la sesión \"{{role}}\"? Esta acción NO se puede deshacer.",
+      "confirm": "Eliminar Sesión"
+    },
+    "messages": {
+      "deleteSuccess": "Sesión Eliminada Exitosamente",
+      "deleteError": "Error al eliminar la sesión"
+    }
+  },
+  "interview": {
+    "title": "Preguntas y Respuestas de Entrevista",
+    "loadMore": "Cargar Más",
+    "pin": "Anclar esta pregunta para fácil acceso",
+    "unpin": "Desanclar esta pregunta",
+    "learnMore": "Saber Más",
+    "viewDetails": "Ver Detalles",
+    "regenerateExplanation": "Regenerar Explicación",
+    "sources": "Saber Más",
+    "experience": "Experiencia",
+    "years": "Años",
+    "year": "Año",
+    "focusAreas": "Áreas de Enfoque",
+    "messages": {
+      "explanationError": "Error al generar explicación, intenta de nuevo más tarde"
+    }
+  },
+  "errors": {
+    "generic": "Algo salió mal. Por favor intenta de nuevo.",
+    "networkError": "Error de red. Por favor verifica tu conexión.",
+    "unauthorized": "No estás autorizado para realizar esta acción.",
+    "notFound": "El recurso solicitado no fue encontrado.",
+    "validation": "Por favor verifica el formulario en busca de errores.",
+    "serverError": "Error del servidor. Por favor intenta más tarde.",
+    "sessionLoadError": "Error al cargar las sesiones"
+  },
+  "landing": {
+    "hero": {
+      "title": "Domina Tu Próxima Entrevista con IA",
+      "subtitle": "Prepárate para entrevistas técnicas y de comportamiento con preguntas personalizadas generadas por IA y retroalimentación experta",
+      "cta": "Comenzar Gratis",
+      "watchDemo": "Ver Demo"
+    },
+    "features": {
+      "title": "¿Por Qué Elegir CareerBoost?",
+      "subtitle": "Todo lo que necesitas para tener éxito en tu próxima entrevista"
+    }
+  }
+}

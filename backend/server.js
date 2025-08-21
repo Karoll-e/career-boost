@@ -7,6 +7,7 @@ const connectDB = require("./config/db");
 const authRoutes = require('./routes/authRoutes')
 const sessionRoutes = require('./routes/sessionRoutes')
 const questionRoutes = require('./routes/questionRoutes');
+const resumeRoutes = require('./routes/resumeRoutes');
 const { protect } = require("./middlewares/authMiddleware");
 const { generateInterviewQuestions, generateConceptExplanation } = require("./controllers/aiController");
 
@@ -32,6 +33,19 @@ connectDB()
 app.use("/api/auth", authRoutes);
 app.use('/api/sessions', sessionRoutes);
 app.use('/api/questions', questionRoutes);
+
+// Debug route - list all resumes (remove in production)
+app.get('/api/resume/debug/all', async (req, res) => {
+  try {
+    const Resume = require('./models/Resume');
+    const resumes = await Resume.find({}).populate('userId', 'name email');
+    res.json({ count: resumes.length, resumes });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.use('/api/resume', resumeRoutes);
 
 app.use("/api/ai/generate-questions", protect, generateInterviewQuestions);
 app.use("/api/ai/generate-explanation", protect, generateConceptExplanation);

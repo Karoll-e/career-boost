@@ -7,6 +7,11 @@ export const API_PATHS = {
     GET_PROFILE: "/api/auth/profile", // Get logged-in user details
   },
 
+  USER: {
+    UPDATE_PROFILE: "/api/auth/update-profile", // Update user profile
+    UPLOAD_AVATAR: "/api/auth/upload-avatar", // Upload profile picture
+  },
+
   IMAGE: {
     UPLOAD_IMAGE: "/api/auth/upload-image", // Upload profile picture
   },
@@ -18,6 +23,7 @@ export const API_PATHS = {
 
   SESSION: {
     CREATE: "/api/sessions/create", // Create a new interview session with questions
+    LIST: "/api/sessions/my-sessions", //  Get all user sessions
     GET_ALL: "/api/sessions/my-sessions", //  Get all user sessions
     GET_ONE: (id) => `/api/sessions/${id}`, // Get session details with questions
     UPDATE: (id) => `/api/sessions/${id}`, // Update a session
@@ -28,5 +34,6 @@ export const API_PATHS = {
     ADD_TO_SESSION: "/api/questions/add", // Add more questions to a session
     PIN: (id) => `/api/questions/${id}/pin`, // Pin or Unpin a question
     UPDATE_NOTE: (id) => `/api/questions/${id}/note`, // Update/Add a note to a question
+    REVIEW: (id) => `/api/questions/${id}/review`, // Mark or unmark a question as reviewed
   },
 };

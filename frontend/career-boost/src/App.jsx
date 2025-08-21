@@ -2,6 +2,8 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import UserProvider from "./context/userContext";
+import LanguageProvider from "./context/LanguageContext";
+import "./i18n/i18n"; // Initialize i18n
 import LandingPage from "./pages/LandingPage";
 // import Dashboard from "./pages/Home/Dashboard";
 import Dashboard from "./pages/Dashboard";
@@ -9,15 +11,16 @@ import CreateInterviewSession from "./pages/CreateInterviewSession";
 import EditInterviewSession from "./pages/EditInterviewSession";
 import InterviewSessions from "./pages/InterviewSessions";
 import InterviewPrep from "./pages/InterviewPrep/InterviewPrep";
-import ResumeBuilder from "./pages/ResumeBuilder";
+import Profile from "./pages/Profile/Profile";
 import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 const App = () => {
   return (
     <UserProvider>
-      <div className="h-screen overflow-y-auto bg-gradient-to-br from-slate-50 to-slate-100  ">
-        <Router>
+      <LanguageProvider>
+        <div className="h-screen overflow-y-auto bg-gradient-to-br from-slate-50 to-slate-100  ">
+          <Router>
           <Routes>
             {/* Default Route */}
             <Route path="/" element={<LandingPage />} />
@@ -63,26 +66,27 @@ const App = () => {
               }
             />
             <Route
-              path="/resume-builder"
+              path="/profile"
               element={
                 <ProtectedRoute>
-                  <ResumeBuilder />
+                  <Profile />
                 </ProtectedRoute>
               }
             />
             <Route path="*" element={<NotFound />} />
           </Routes>
-        </Router>
+          </Router>
 
-        <Toaster
-          toastOptions={{
-            className: "",
-            style: {
-              fontSize: "13px",
-            },
-          }}
-        />
-      </div>
+          <Toaster
+            toastOptions={{
+              className: "",
+              style: {
+                fontSize: "13px",
+              },
+            }}
+          />
+        </div>
+      </LanguageProvider>
     </UserProvider>
   );
 };

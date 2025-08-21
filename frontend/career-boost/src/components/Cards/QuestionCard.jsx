@@ -34,7 +34,7 @@ const QuestionCard = ({
         "rounded-lg mb-4 overflow-hidden py-4 px-5 shadow-xl border group transition-all duration-200",
         isPinned 
           ? "bg-gradient-to-r from-amber-50 to-orange-50 border-amber-200 shadow-amber-100/40 ring-1 ring-amber-100" 
-          : "bg-white shadow-gray-100/70 border-gray-100/60"
+          : "bg-white shadow-gray-100/70 border-gray-300"
       )}>
         <div className="flex items-start justify-between cursor-pointer">
           <div className="flex items-start gap-3.5">
@@ -86,6 +86,7 @@ const QuestionCard = ({
                   {isPinned ? "Unpin this question" : "Pin this question for easy access"}
                 </TooltipContent>
               </Tooltip>
+
 
               <button
                 className={`flex items-center gap-2 text-xs font-medium px-3 py-1 mr-2 rounded text-nowrap border cursor-pointer ${

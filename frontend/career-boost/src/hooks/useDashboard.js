@@ -10,10 +10,6 @@ export const useDashboard = () => {
   const handleQuickAction = useCallback((actionId) => {
     // Handle navigation or action based on actionId
     switch (actionId) {
-      case 'cv-builder':
-        // Navigate to CV builder
-        navigate('/resume-builder');
-        break;
       case 'interview-prep':
         // Navigate to interview prep form
         navigate('/create-interview-session');

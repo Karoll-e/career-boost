@@ -1,5 +1,6 @@
 import React from "react";
-import { Briefcase, Clock, HelpCircle, Calendar, Target, Sparkles } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { Briefcase, Clock, HelpCircle, Calendar, Target, Sparkles, TrendingUp } from "lucide-react";
 
 const RoleInfoHeader = ({
   role,
@@ -9,6 +10,8 @@ const RoleInfoHeader = ({
   description,
   lastUpdated,
 }) => {
+  const { t } = useTranslation();
+  
   return (
     <div className="relative max-w-screen-lg mx-auto overflow-hidden rounded-xl">
       {/* Background with gradient and pattern */}
@@ -40,7 +43,7 @@ const RoleInfoHeader = ({
           <div className="mb-6">
             <div className="flex items-center gap-2 mb-2">
               <Sparkles className="w-4 h-4 text-indigo-500" />
-              <span className="text-sm font-semibold text-gray-700">Focus Areas</span>
+              <span className="text-sm font-semibold text-gray-700">{t('interview.focusAreas')}</span>
             </div>
             <p className="text-gray-800 text-base leading-relaxed bg-white/50 backdrop-blur-sm rounded-lg px-4 py-3 border border-white/60 shadow-sm">
               {topicsToFocus}
@@ -49,7 +52,7 @@ const RoleInfoHeader = ({
         </div>
 
         {/* Stats cards in horizontal row */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           
           {/* Experience card */}
           <div className="bg-white/70 backdrop-blur-sm rounded-xl p-4 border border-white/60 shadow-lg hover:shadow-xl transition-all duration-300">
@@ -58,9 +61,9 @@ const RoleInfoHeader = ({
                 <Clock className="w-5 h-5 text-white" />
               </div>
               <div>
-                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Experience</p>
-                <p className="text-lg font-bold text-gray-900">
-                  {experience} {experience == 1 ? "Year" : "Years"}
+                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide">{t('interview.experience')}</p>
+                <p className="text-md font-bold text-gray-900">
+                  {experience} {experience == 1 ? t('interview.year') : t('interview.years')}
                 </p>
               </div>
             </div>
@@ -73,7 +76,7 @@ const RoleInfoHeader = ({
                 <HelpCircle className="w-5 h-5 text-white" />
               </div>
               <div>
-                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Questions</p>
+                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide">{t('sessions.questions')}</p>
                 <p className="text-lg font-bold text-gray-900">
                   {questions} Q&A
                 </p>
@@ -88,7 +91,7 @@ const RoleInfoHeader = ({
                 <Calendar className="w-5 h-5 text-white" />
               </div>
               <div>
-                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Last Updated</p>
+                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide">{t('profile.lastUpdated')}</p>
                 <p className="text-sm font-bold text-gray-900">
                   {lastUpdated}
                 </p>

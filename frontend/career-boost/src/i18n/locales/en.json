@@ -1,0 +1,234 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete",
+    "create": "Create",
+    "update": "Update",
+    "back": "Back",
+    "continue": "Continue",
+    "close": "Close",
+    "success": "Success",
+    "error": "Error",
+    "warning": "Warning",
+    "info": "Info",
+    "yes": "Yes",
+    "no": "No",
+    "submit": "Submit",
+    "search": "Search",
+    "filter": "Filter",
+    "clear": "Clear",
+    "select": "Select",
+    "upload": "Upload",
+    "download": "Download",
+    "view": "View",
+    "share": "Share",
+    "copy": "Copy",
+    "paste": "Paste",
+    "cut": "Cut",
+    "undo": "Undo",
+    "redo": "Redo",
+    "refresh": "Refresh",
+    "logout": "Log out",
+    "login": "Log In",
+    "register": "Sign Up",
+    "welcome": "Welcome",
+    "language": "Language"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "sessions": "Sessions",
+    "profile": "Profile",
+    "account": "Account",
+    "settings": "Settings",
+    "help": "Help",
+    "about": "About"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcomeMessage": "Welcome back, {{name}}! 👋",
+    "welcomeSubtitle": "Ready to ace your next interview with AI-powered practice?",
+    "quickStart": "Quick Start",
+    "quickStartDescription": "Jump right into interview preparation",
+    "startNewSession": "Start New Interview Session",
+    "viewAllSessions": "View All Sessions",
+    "recentSessions": "Recent Sessions",
+    "recentSessionsDescription": "Your latest interview practice sessions",
+    "noSessions": "No sessions yet. Create your first interview session to get started!",
+    "createFirstSession": "Create Your First Session",
+    "aiFeatures": "AI-Powered Features",
+    "aiFeaturesDescription": "Discover how AI enhances your interview preparation",
+    "gettingStarted": "Getting Started Guide",
+    "gettingStartedDescription": "New to interview prep? Follow these steps to get the most out of CareerBoost",
+    "stats": {
+      "sessionsCreated": "Sessions Created"
+    },
+    "features": {
+      "aiQuestions": {
+        "title": "AI-Powered Questions",
+        "description": "Get personalized questions based on your role and experience level"
+      },
+      "smartFeedback": {
+        "title": "Smart Feedback",
+        "description": "Receive detailed feedback and improvement suggestions after each session"
+      },
+      "instantExplanations": {
+        "title": "Instant Explanations",
+        "description": "Get AI explanations for complex concepts and technical questions"
+      }
+    },
+    "steps": {
+      "createSession": {
+        "title": "Create Your First Session",
+        "description": "Start by creating an interview preparation session for your target role",
+        "action": "Get Started"
+      },
+      "practiceAI": {
+        "title": "Practice with AI",
+        "description": "Answer AI-generated questions and receive real-time feedback",
+        "action": "Learn More"
+      },
+      "practiceRegularly": {
+        "title": "Practice Regularly",
+        "description": "Keep practicing with different sessions to improve your interview skills",
+        "action": "View Sessions"
+      }
+    }
+  },
+  "profile": {
+    "title": "Profile Settings",
+    "subtitle": "Manage your account information and preferences",
+    "personalInfo": "Personal Information",
+    "personalInfoDescription": "Update your personal details and profile picture",
+    "profilePicture": "Profile Picture",
+    "profilePictureDescription": "Click the camera icon to upload a new picture",
+    "profilePictureFormat": "JPG, PNG or GIF. Max size 5MB.",
+    "fullName": "Full Name",
+    "emailAddress": "Email Address",
+    "saveChanges": "Save Changes",
+    "saving": "Saving...",
+    "accountInfo": "Account Information",
+    "accountInfoDescription": "Your account details and membership status",
+    "accountCreated": "Account Created",
+    "lastUpdated": "Last Updated",
+    "notAvailable": "Not available",
+    "placeholders": {
+      "name": "Enter your full name",
+      "email": "Enter your email address"
+    },
+    "messages": {
+      "profileUpdated": "Profile updated successfully!",
+      "pictureUploaded": "Profile picture uploaded successfully!",
+      "nameRequired": "Name is required",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Please enter a valid email address",
+      "uploadError": "Failed to upload image. Please try again.",
+      "updateError": "Failed to update profile. Please try again.",
+      "fileTypeError": "Please select a valid image file",
+      "fileSizeError": "Image size should be less than 5MB"
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Sign In",
+      "subtitle": "Welcome back! Please sign in to your account",
+      "email": "Email",
+      "password": "Password",
+      "signIn": "Sign In",
+      "noAccount": "Don't have an account?",
+      "createAccount": "Create one here",
+      "forgotPassword": "Forgot your password?"
+    },
+    "register": {
+      "title": "Create Account",
+      "subtitle": "Join CareerBoost and start your interview preparation journey",
+      "name": "Full Name",
+      "email": "Email",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "createAccount": "Create Account",
+      "hasAccount": "Already have an account?",
+      "signIn": "Sign in here"
+    },
+    "messages": {
+      "loginSuccess": "Login successful!",
+      "registerSuccess": "Account created successfully!",
+      "loginError": "Login failed. Please check your credentials.",
+      "registerError": "Registration failed. Please try again.",
+      "emailRequired": "Email is required",
+      "passwordRequired": "Password is required",
+      "nameRequired": "Name is required",
+      "emailInvalid": "Please enter a valid email address",
+      "passwordMismatch": "Passwords do not match",
+      "passwordTooShort": "Password must be at least 6 characters"
+    }
+  },
+  "sessions": {
+    "title": "Interview Prep Sessions",
+    "subtitle": "Practice with AI-powered mock interviews tailored to your target role",
+    "create": "Create New Session",
+    "createNew": "Create New Session",
+    "createYourFirst": "Create Your First Session",
+    "edit": "Edit Session",
+    "delete": "Delete Session",
+    "role": "Role",
+    "experience": "experience",
+    "topics": "Topics to Focus",
+    "questions": "questions",
+    "status": "Status",
+    "created": "Created",
+    "lastAccessed": "Last Accessed",
+    "noSessions": "No sessions yet",
+    "createFirst": "Create your first interview practice session to get started",
+    "startPractice": "Start Practice",
+    "deleteModal": {
+      "title": "Delete Interview Session",
+      "message": "Are you sure you want to delete \"{{role}}\" session? This action CANNOT be undone.",
+      "confirm": "Delete Session"
+    },
+    "messages": {
+      "deleteSuccess": "Session Deleted Successfully",
+      "deleteError": "Failed to delete session"
+    }
+  },
+  "interview": {
+    "title": "Interview Q & A",
+    "loadMore": "Load More",
+    "pin": "Pin this question for easy access",
+    "unpin": "Unpin this question",
+    "learnMore": "Learn More",
+    "viewDetails": "View Details",
+    "regenerateExplanation": "Regenerate Explanation",
+    "sources": "Learn More",
+    "experience": "Experience",
+    "years": "Years",
+    "year": "Year",
+    "focusAreas": "Focus Areas",
+    "messages": {
+      "explanationError": "Failed to generate explanation, Try again later"
+    }
+  },
+  "errors": {
+    "generic": "Something went wrong. Please try again.",
+    "networkError": "Network error. Please check your connection.",
+    "unauthorized": "You are not authorized to perform this action.",
+    "notFound": "The requested resource was not found.",
+    "validation": "Please check the form for errors.",
+    "serverError": "Server error. Please try again later.",
+    "sessionLoadError": "Failed to load sessions"
+  },
+  "landing": {
+    "hero": {
+      "title": "Ace Your Next Interview with AI",
+      "subtitle": "Prepare for technical and behavioral interviews with personalized AI-generated questions and expert feedback",
+      "cta": "Get Started Free",
+      "watchDemo": "Watch Demo"
+    },
+    "features": {
+      "title": "Why Choose CareerBoost?",
+      "subtitle": "Everything you need to succeed in your next interview"
+    }
+  }
+}

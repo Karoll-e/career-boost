@@ -1,13 +1,11 @@
 import {
   LayoutDashboard,
-  FileText,
   MessageSquare,
   Settings,
   LogOut,
   User,
 } from "lucide-react"
 import LogoIcon from '../assets/Logo'
-import resumeCardIllustration from "../assets/oc-on-the-laptop.svg";
 import interviewCardIllustration from "../assets/oc-growing.svg";
 
 export const CARD_BG = [
@@ -30,11 +28,6 @@ export const SIDEBAR_ITEMS = {
       url: "/dashboard",
       icon: LayoutDashboard,
       isActive: true,
-    },
-    {
-      title: "Resume Builder",
-      url: "/resume-builder",
-      icon: FileText,
     },
     {
       title: "Interview Prep",
@@ -86,19 +79,6 @@ export const APP_FEATURES = [
   ];
   
   export const QUICK_ACTIONS = [
-    {
-      id: 'cv-builder',
-      title: "Create a new CV",
-      description: "Boost your career with our AI-powered resume builder",
-      icon: resumeCardIllustration,
-      bgColor: "from-indigo-50/80 to-indigo-50/60",
-      borderColor: "border-indigo-200",
-      hoverBorderColor: "hover:border-indigo-300",
-      hoverShadowColor: "hover:shadow-indigo-100/50",
-      buttonBgColor: "bg-indigo-600",
-      buttonHoverBgColor: "hover:bg-indigo-700",
-      accentColor: "text-indigo-600"
-    },
     {
       id: 'interview-prep',
       title: "Interview Prep",

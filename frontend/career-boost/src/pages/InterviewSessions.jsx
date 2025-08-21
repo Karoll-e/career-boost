@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import DashboardLayout from "../components/layouts/DashboardLayout";
 import { Button } from "../components/ui/button";
 import { Plus, Clock, Target, BookOpen, Trash2, TriangleAlert, Edit } from "lucide-react";
@@ -11,6 +12,7 @@ import DeleteAlertContent from "../components/DeleteAlertContent";
 import toast from "react-hot-toast";
 
 const InterviewSessions = () => {
+  const { t } = useTranslation();
   const [sessions, setSessions] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -32,7 +34,7 @@ const InterviewSessions = () => {
       setSessions(response.data || []);
       console.log('Sessions loaded:', response.data); // Debug log
     } catch (error) {
-      setError("Failed to load sessions");
+      setError(t('errors.sessionLoadError'));
       console.error("Error fetching sessions:", error);
     } finally {
       setIsLoading(false);
@@ -42,9 +44,9 @@ const InterviewSessions = () => {
   const deleteSession = async (sessionData) => {
     try {
       await axiosInstance.delete(API_PATHS.SESSION.DELETE(sessionData?._id));
-      toast.success("Session Deleted Successfully", {
+      toast.success(t('sessions.messages.deleteSuccess'), {
         position: "bottom-center",
-        duration: 2000,
+        duration: 5000,
         style: {
           padding: "10px",
           border: "1px solid #bffcd9",
@@ -59,8 +61,8 @@ const InterviewSessions = () => {
       fetchSessions();
     } catch (error) {
       console.error("Error deleting session data:", error);
-      toast.error("Failed to delete session", {
-        duration: 2000,
+      toast.error(t('sessions.messages.deleteError'), {
+        duration: 5000,
         style: {
           padding: "10px",
           border: "2px solid #ffe0e1",
@@ -116,10 +118,10 @@ const InterviewSessions = () => {
             <div className="flex items-center justify-between mb-6">
               <div>
                 <h1 className="text-3xl font-bold text-gray-900 mb-2">
-                  Interview Prep Sessions
+                  {t('sessions.title')}
                 </h1>
                 <p className="text-gray-600">
-                  Practice with AI-powered mock interviews tailored to your target role
+                  {t('sessions.subtitle')}
                 </p>
               </div>
               <Button
@@ -127,7 +129,7 @@ const InterviewSessions = () => {
                 className="flex items-center gap-2 px-6 py-3 text-white rounded-lg transition-colors font-medium"
               >
                 <Plus className="w-4 h-4" />
-                Create New Session
+                {t('sessions.createNew')}
               </Button>
             </div>
           </div>
@@ -147,17 +149,17 @@ const InterviewSessions = () => {
                   <Target className="w-8 h-8 text-gray-400" />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  No sessions yet
+                  {t('sessions.noSessions')}
                 </h3>
                 <p className="text-gray-600 mb-6">
-                  Create your first interview practice session to get started
+                  {t('sessions.createFirst')}
                 </p>
                 <Button
                   onClick={handleCreateSession}
                   className="inline-flex items-center gap-2 px-6 py-3 text-white rounded-lg transition-colors font-medium"
                 >
                   <Plus className="w-4 h-4" />
-                  Create Your First Session
+                  {t('sessions.createYourFirst')}
                 </Button>
               </div>
             </div>
@@ -172,7 +174,7 @@ const InterviewSessions = () => {
                   <div className="p-6">
                     {/* Session Header */}
                     <div className="flex items-start justify-between mb-4">
-                      <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mb-3">
+                      <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-yellow-600 rounded-lg flex items-center justify-center mb-3">
                         <Target className="w-6 h-6 text-white" />
                       </div>
                       <div className="flex items-center gap-2">
@@ -205,7 +207,7 @@ const InterviewSessions = () => {
                     <div className="space-y-2 mb-4">
                       <div className="flex items-center gap-2 text-sm text-gray-600">
                         <Clock className="w-4 h-4" />
-                        <span>{session.experience} experience</span>
+                        <span>{session.experience} {t('sessions.experience')}</span>
                       </div>
                       
                       {session.topicsToFocus && (
@@ -219,10 +221,10 @@ const InterviewSessions = () => {
                     {/* Questions Count */}
                     <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                       <span className="text-sm text-gray-500">
-                        {session.questions?.length || 0} questions
+                        {session.questions?.length || 0} {t('sessions.questions')}
                       </span>
                       <span className="text-xs text-blue-600 font-medium group-hover:text-blue-700">
-                        Start Practice →
+                        {t('sessions.startPractice')} →
                       </span>
                     </div>
                   </div>
@@ -249,10 +251,10 @@ const InterviewSessions = () => {
               <TriangleAlert className="w-8 h-8 text-red-500" />
             </div>
             <h3 className="text-xl font-semibold text-gray-900 mb-2">
-              Delete Interview Session
+              {t('sessions.deleteModal.title')}
             </h3>
             <p className="text-gray-600 text-sm text-pretty">
-              Are you sure you want to delete <span className="font-semibold">"{openDeleteAlert?.data?.role}"</span> session? This action <span className="font-semibold">CANNOT</span> be undone.
+              {t('sessions.deleteModal.message', { role: openDeleteAlert?.data?.role })}
             </p>
           </div>
 
@@ -268,8 +270,8 @@ const InterviewSessions = () => {
                     {openDeleteAlert.data.role}
                   </h4>
                   <div className="flex items-center gap-4 text-xs text-gray-500 mt-1">
-                    <span>{openDeleteAlert.data.experience} experience</span>
-                    <span>{openDeleteAlert.data.questions?.length || 0} questions</span>
+                    <span>{openDeleteAlert.data.experience} {t('sessions.experience')}</span>
+                    <span>{openDeleteAlert.data.questions?.length || 0} {t('sessions.questions')}</span>
                   </div>
                 </div>
               </div>
@@ -285,13 +287,13 @@ const InterviewSessions = () => {
               variant="outline"
               className="flex-1 border-gray-300 text-gray-700 hover:bg-gray-50"
             >
-              Cancel
+              {t('common.cancel')}
             </Button>
             <Button
               onClick={() => deleteSession(openDeleteAlert.data)}
               className="flex-1 bg-red-600 hover:bg-red-700 text-white"
             >
-              Delete Session
+              {t('sessions.deleteModal.confirm')}
             </Button>
           </div>
         </div>

@@ -125,4 +125,107 @@ const getUserProfile = async (req, res) => {
   }
 };
 
-module.exports = { registerUser, loginUser, getUserProfile };
+// @desc    Update user profile
+// @route   PUT /api/auth/update-profile
+// @access  Private (Requires JWT)
+const updateUserProfile = async (req, res) => {
+  try {
+    const { name, email, avatar } = req.body;
+
+    // Validate required fields
+    if (!name || !email) {
+      return res.status(400).json({ 
+        message: "Name and email are required" 
+      });
+    }
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ 
+        message: "Please enter a valid email address" 
+      });
+    }
+
+    // Check if email is already taken by another user
+    if (email !== req.user.email) {
+      const existingUser = await User.findOne({ email });
+      if (existingUser && existingUser._id.toString() !== req.user.id) {
+        return res.status(400).json({ message: "Email already in use" });
+      }
+    }
+
+    // Update user profile
+    const user = await User.findByIdAndUpdate(
+      req.user.id,
+      {
+        name: name.trim(),
+        email: email.trim(),
+        profileImageUrl: avatar || req.user.profileImageUrl
+      },
+      { new: true, runValidators: true }
+    ).select("-password");
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.json({
+      message: "Profile updated successfully",
+      user: {
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        avatar: user.profileImageUrl,
+        createdAt: user.createdAt,
+        updatedAt: user.updatedAt
+      }
+    });
+  } catch (error) {
+    console.error('Update profile error:', error);
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+};
+
+// @desc    Upload user avatar
+// @route   POST /api/auth/upload-avatar
+// @access  Private (Requires JWT)
+const uploadUserAvatar = async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ message: "No file uploaded" });
+    }
+
+    // Create the full URL for the uploaded image
+    const avatarUrl = `${req.protocol}://${req.get("host")}/uploads/${req.file.filename}`;
+
+    // Update user's profile image URL in the database
+    const user = await User.findByIdAndUpdate(
+      req.user.id,
+      { profileImageUrl: avatarUrl },
+      { new: true }
+    ).select("-password");
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.json({
+      message: "Avatar uploaded successfully",
+      avatarUrl: avatarUrl,
+      user: {
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        avatar: user.profileImageUrl,
+        createdAt: user.createdAt,
+        updatedAt: user.updatedAt
+      }
+    });
+  } catch (error) {
+    console.error('Upload avatar error:', error);
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+};
+
+module.exports = { registerUser, loginUser, getUserProfile, updateUserProfile, uploadUserAvatar };

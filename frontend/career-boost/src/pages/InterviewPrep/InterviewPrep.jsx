@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import moment from "moment";
 import { AnimatePresence, motion } from "framer-motion";
 import { CircleAlert, ListCollapse, Sparkles, ExternalLink, BookOpen } from "lucide-react";
@@ -15,6 +16,7 @@ import SkeletonLoader from "../../components/Loader/SkeletonLoader";
 import AIResponsePreview from "./components/AIResponsePreview";
 
 const InterviewPrep = () => {
+  const { t } = useTranslation();
   const { sessionId } = useParams();
 
   const [sessionData, setSessionData] = useState(null);
@@ -77,7 +79,7 @@ const InterviewPrep = () => {
       }
     } catch (error) {
       setExplanation(null);
-      setErrorMsg("Failed to generate explanation, Try again later");
+      setErrorMsg(t('interview.messages.explanationError'));
       console.error("Error:", error);
     } finally {
       setIsLoading(false);
@@ -111,6 +113,7 @@ const InterviewPrep = () => {
       console.error("Error:", error);
     }
   };
+
 
   // Add more questions to a session
   const uploadMoreQuestions = async () => {
@@ -147,7 +150,7 @@ const InterviewPrep = () => {
       if (error.response && error.response.data.message) {
         setError(error.response.data.message);
       } else {
-        setError("Something went wrong. Please try again.");
+        setError(t('errors.generic'));
       }
     } finally {
       setIsUpdateLoader(false);
@@ -195,7 +198,7 @@ const InterviewPrep = () => {
       />
 
       <div className="mx-auto pt-4 pb-4 px-4 md:px-0 max-w-screen-lg">
-        <h2 className="text-lg font-semibold color-black">Interview Q & A</h2>
+        <h2 className="text-lg font-semibold color-black">{t('interview.title')}</h2>
 
         <div className="grid grid-cols-12 gap-4 mt-5 mb-10">
           <div
@@ -247,7 +250,7 @@ const InterviewPrep = () => {
                               ) : (
                                 <ListCollapse className="text-lg" />
                               )}{" "}
-                              Load More
+                              {t('interview.loadMore')}
                             </button>
                           </div>
                         )}
@@ -283,7 +286,7 @@ const InterviewPrep = () => {
                     className="flex items-center gap-2 text-sm text-blue-800 font-medium bg-blue-50 px-4 py-2 rounded-lg border border-blue-100 hover:border-blue-200 hover:bg-blue-100 transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <Sparkles size={16} />
-                    Regenerate Explanation
+                    {t('interview.regenerateExplanation')}
                   </button>
                 </div>
                 <AIResponsePreview content={explanation?.explanation} />
@@ -293,7 +296,7 @@ const InterviewPrep = () => {
                   <div className="mt-8 pt-6 border-t border-gray-200">
                     <div className="flex items-center gap-2 mb-4">
                       <BookOpen className="w-5 h-5 text-blue-600" />
-                      <h3 className="text-lg font-semibold text-gray-900">Learn More</h3>
+                      <h3 className="text-lg font-semibold text-gray-900">{t('interview.sources')}</h3>
                     </div>
                     <div className="space-y-3">
                       {explanation.sources.map((source, index) => (
