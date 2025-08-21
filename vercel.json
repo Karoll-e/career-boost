@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "name": "career-boost-monorepo",
   "builds": [
     {
       "src": "backend/server.js",
@@ -14,23 +13,13 @@
       }
     }
   ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/backend/server.js"
-    },
-    {
-      "src": "/uploads/(.*)",
-      "dest": "/backend/server.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/frontend/career-boost/index.html"
-    }
-  ],
   "rewrites": [
     {
       "source": "/api/(.*)",
+      "destination": "/backend/server.js"
+    },
+    {
+      "source": "/uploads/(.*)",
       "destination": "/backend/server.js"
     },
     {
