@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "name": "career-boost-frontend",
   "builds": [
     {
       "src": "package.json",
@@ -8,16 +7,6 @@
       "config": {
         "distDir": "dist"
       }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "https://career-boost-backend.vercel.app/api/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
     }
   ],
   "rewrites": [

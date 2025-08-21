@@ -1,6 +1,6 @@
 // Environment-based API URL configuration
 export const BASE_URL = import.meta.env.VITE_API_BASE_URL || 
-  (import.meta.env.DEV ? "http://localhost:8000" : "");
+  (import.meta.env.DEV ? "http://localhost:8000" : "https://backend-4t2gpono6-karolls-projects.vercel.app");
 
 export const API_PATHS = {
   AUTH: {
