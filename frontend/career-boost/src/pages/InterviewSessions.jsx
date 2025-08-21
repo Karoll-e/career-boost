@@ -30,9 +30,9 @@ const InterviewSessions = () => {
     try {
       setIsLoading(true);
       const response = await axiosInstance.get(API_PATHS.SESSION.GET_ALL);
-      // Fixed: Use response.data directly, not response.data.sessions
-      setSessions(response.data || []);
-      console.log('Sessions loaded:', response.data); // Debug log
+      const sessionList = response.data?.sessions || [];
+      setSessions(sessionList);
+      console.log('Sessions loaded:', sessionList); // Debug log
     } catch (error) {
       setError(t('errors.sessionLoadError'));
       console.error("Error fetching sessions:", error);

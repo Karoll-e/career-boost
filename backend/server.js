@@ -13,13 +13,19 @@ const { generateInterviewQuestions, generateConceptExplanation } = require("./co
 const app = express();
 
 // Middleware to handle CORS
-app.use(
-  cors({
-    origin: "*",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
-);
+// Simpler CORS configuration
+const corsOptions = {
+  origin: process.env.NODE_ENV === 'development' ? true : [
+    process.env.FRONTEND_URL,
+    'https://career-boost-frontend.vercel.app',
+    'https://career-boost.vercel.app'
+  ].filter(Boolean),
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true
+};
+
+app.use(cors(corsOptions));
 
 // IMPORTANT: JSON parsing middleware MUST come before routes
 app.use(express.json());
