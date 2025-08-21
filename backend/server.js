@@ -34,6 +34,11 @@ app.use(express.urlencoded({ extended: true })); // Add this for form data
 // Connect to database (can be before or after middleware)
 connectDB()
 
+app.get("/", (req, res) => {
+  res.send("API is running 🚀");
+});
+
+
 // Routes
 app.use("/api/auth", authRoutes);
 app.use('/api/sessions', sessionRoutes);
